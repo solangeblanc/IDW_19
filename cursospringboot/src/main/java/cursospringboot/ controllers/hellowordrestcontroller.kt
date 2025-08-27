@@ -1,4 +1,1 @@
-package cursospringboot.` controllers`
-
-class hellowordrestcontroller {
-}
+primer commit
