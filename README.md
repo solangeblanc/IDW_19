@@ -14,7 +14,7 @@ IDW_19
 - Victoria Belén Mamberti
 - Leandro Plaza Puga 
 
-## Objetivos de esta etapa  
+## Objetivos de esta etapa  fd
 - Definir la estructura inicial del sitio web.  
 - Crear las páginas básicas solicitadas.  
 - Conectar el HTML con CSS.  
