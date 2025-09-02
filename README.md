@@ -19,3 +19,12 @@ IDW_19
 - Crear las páginas básicas solicitadas.  
 - Conectar el HTML con CSS.  
 - Establecer un estilo simple para la primera versión del sitio.  
+
+## Estructura del sitio  
+El sitio web en esta primera entrega cuenta con las siguientes páginas:  
+- `index.html`      Página de inicio o portada.  
+- `info.html`       Información institucional.  
+- `contacto.html`   Página de contacto.  
+
+Además, se incluye un archivo de estilos:  
+- `----.css`        Define el diseño básico del sitio. <!-- A definir aún -->
