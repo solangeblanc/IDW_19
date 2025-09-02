@@ -23,7 +23,7 @@ IDW_19
 ## Estructura del sitio  
 El sitio web en esta primera entrega cuenta con las siguientes páginas:  
 - `index.html`      Página de inicio o portada.  
-- `info.html`       Información institucional.  
+- `institucional.html`       Información institucional.  
 - `contacto.html`   Página de contacto.  
 
 Además, se incluye un archivo de estilos:  
