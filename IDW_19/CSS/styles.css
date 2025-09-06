@@ -63,11 +63,13 @@ section h2{
     margin-bottom: 18px;
 }
 
-.bienestar{
-    display: grid;
-    grid_template-colums: repeat (3,1fr);
-    gap: 25 px:
-   }
+.obraSocial{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0;
+    margin: 0 0 15px 0;
+}
 
 .catalogo{
 
