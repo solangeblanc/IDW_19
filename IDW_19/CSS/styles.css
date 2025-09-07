@@ -61,6 +61,7 @@ section h2{
     color: #007665;
     font-size: 1.5em;
     margin-bottom: 18px;
+     text-align: center;
 }
 
 .bienestar > div {
@@ -78,10 +79,6 @@ section h2{
     object-fit: cover;
 }
 
-
-.catalogo{
-
-}
 
 footer{
     background: #007bb5;
