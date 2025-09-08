@@ -71,6 +71,27 @@ section h2{
     margin-top: 20px;
 }
 
+/* Estilo para clases de Institucional */
+
+.calidad {
+  background: #f5f5f5;
+  padding: 1rem 1.5rem;
+  border-left: 5px solid #007bb5;
+  border-radius: 6px;
+  margin-top: 1rem;
+}
+
+.calidad ul {
+  list-style: none;
+  padding: 0;
+}
+
+.calidad li::before {
+  content: "✔ ";
+  color: green;
+  font-weight: bold;
+}
+
 /* Estilo uniforme para todas las imágenes */
 .bienestar img {
     width: 100%;
@@ -79,6 +100,14 @@ section h2{
     object-fit: cover;
 }
 
+/* Estilo para imagenes Institucional*/
+.img-fija {
+  width: 626px;
+  height: 416px;
+  object-fit: cover;
+  display: block;
+  margin: 1rem auto;
+}
 
 footer{
     background: #007bb5;
