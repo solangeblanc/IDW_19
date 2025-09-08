@@ -26,5 +26,5 @@ El sitio web en esta primera entrega cuenta con las siguientes páginas:
 - `institucional.html`       Información institucional.  
 - `contacto.html`   Página de contacto.  
 
-Además, se incluye un archivo de estilos:  
-- `----.css`        Define el diseño básico del sitio. <!-- A definir aún -->
+Además, se incluye un archivo de estilos dentro de la carpeta CSS:  
+- `styles.css`        Define el diseño básico del sitio.
