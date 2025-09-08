@@ -101,12 +101,14 @@ section h2{
 }
 
 /* Estilo para imagenes Institucional*/
-.img-fija {
-  width: 626px;
-  height: 416px;
-  object-fit: cover;
-  display: block;
-  margin: 1rem auto;
+.img-institucional {
+    width: 100%;          /* ocupa todo el ancho del contenedor */
+    max-width: 626px;     /* opcional, para no superar cierto ancho */
+    height: 416px;        /* altura uniforme */
+    object-fit: cover;    /* recorta la imagen para que llene el área sin deformarla */
+    border-radius: 6px;   /* opcional, esquinas redondeadas */
+    display: block;
+    margin: 1rem auto;    /* centrado */
 }
 
 footer{
