@@ -1,3 +1,4 @@
+/*
 body{
     font-family: Arial, Helvetica, sans-serif;
     background: #f4f4f4;
@@ -73,7 +74,7 @@ section h2{
 
 /* Estilo para clases de Institucional */
 
-.calidad {
+/* .calidad {
   background: #f5f5f5;
   padding: 1rem 1.5rem;
   border-left: 5px solid #007bb5;
@@ -93,15 +94,14 @@ section h2{
 }
 
 /* Estilo uniforme para todas las imágenes */
-.bienestar img {
+/* .bienestar img {
     width: 100%;
     height: auto;
     border-radius: 6px;
     object-fit: cover;
-}
-
+} */
 /* Estilo para imagenes Institucional*/
-.img-institucional {
+/* .img-institucional {
     width: 100%;          
     max-width: 626px;     
     height: 416px;        
@@ -180,12 +180,4 @@ section h3 {
   color: #007665;
   margin-bottom: 10px;
   font-size: 1.3em;
-}
-
-
-
-
-
-
-
-
+} */
