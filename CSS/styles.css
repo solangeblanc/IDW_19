@@ -1,5 +1,5 @@
-/*
-body{
+/* Estilos generales */
+body {
     font-family: Arial, Helvetica, sans-serif;
     background: #f4f4f4;
     margin: 0;
@@ -7,195 +7,100 @@ body{
 }
 
 header {
+    width: 100%;    
     background-color: #007bb5;
     color: #fff;
     padding: 20px 0 10px 0;
     text-align: center;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
 }
+
 header h1 {
     margin: 0 0 10px 0;
     font-size: 2em;
     text-align: center;
 }
 
-nav ul{
-    list-style: none;
-    padding: 0;
-    margin: 0 0 5px 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-nav ul li{
-    display: inline;
-}
-
-nav ul a{
+nav a {
     color: #fff;
     font-weight: 500;
     text-decoration: none;
-    transition: text-decoration 0.2, color: 0.2s;
+    margin: 0 10px;
+    transition: color 0.2s;
 }
 
-nav ul a:hover{
-    color:aqua;
+nav a:hover {
+    color: aqua;
 }
+
 main {
-    max-width: 700px;
+    max-width: 1200px;
     margin: 40px auto 0 auto;
     padding: 0 15px;
 }
 
-
-section{
-    background: #ffff;
-    padding: 20px;
+section {
     margin-bottom: 20px;
-    box-shadow: 0 2px 6px rgba(0,0, 0, 0.1);
-    border-radius: 8px;
 }
 
-section h2{
+section h2 {
     margin-top: 0;
     color: #007665;
     font-size: 1.5em;
     margin-bottom: 18px;
-     text-align: center;
+    text-align: center;
 }
 
-.bienestar > div {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
+/* Cards interactivas */
+.card-text-fixed {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    font-size: 0.95em;
 }
 
-/* Estilo para clases de Institucional */
-
-/* .calidad {
-  background: #f5f5f5;
-  padding: 1rem 1.5rem;
-  border-left: 5px solid #007bb5;
-  border-radius: 6px;
-  margin-top: 1rem;
-}
-
-.calidad ul {
-  list-style: none;
-  padding: 0;
-}
-
-.calidad li::before {
-  content: "✔ ";
-  color: green;
-  font-weight: bold;
-}
-
-/* Estilo uniforme para todas las imágenes */
-/* .bienestar img {
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
+.card-img-top {
+    height: 250px;
     object-fit: cover;
-} */
-/* Estilo para imagenes Institucional*/
-/* .img-institucional {
-    width: 100%;          
-    max-width: 626px;     
-    height: 416px;        
-    object-fit: cover;    
-    border-radius: 6px;   
-    display: block;
-    margin: 1rem auto;    
 }
 
-footer{
+.collapse-content {
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    font-size: 0.9em;
+    background-color: #eef5f5;
+}
+
+.btn-sm-primary {
+    background-color: #007bb5;
+    border-color: #007bb5;
+    color: white;
+    font-size: 0.9em;
+}
+
+.btn-sm-primary:hover {
+    background-color: #005f8d;
+    border-color: #005f8d;
+    color: white;
+}
+
+/* Footer */
+footer {
     background: #007bb5;
     padding: 18px 0;
     text-align: center;
     color: floralwhite;
     margin-top: 40px;
-    font-size: 0.95;
+    font-size: 0.95em;
     border-top: 1px solid #007665;
 }
-form {
-  background: #ffffff;
-  padding: 25px 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  display: grid;
-  gap: 15px;
-  margin-bottom: 40px;
+
+footer a {
+    color: floralwhite;
+    text-decoration: none;
+    margin: 0 5px;
 }
 
-form label {
-  font-weight: bold;
-  color: #007bb5;
-  margin-bottom: 5px;
+footer a:hover {
+    text-decoration: underline;
 }
-
-form input,
-form textarea {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1em;
-  transition: border-color 0.3s;
-}
-
-form input:focus,
-form textarea:focus {
-  border-color: #007bb5;
-  outline: none;
-}
-
-form button {
-  background-color: #007bb5;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-form button:hover {
-  background-color: #005f8d;
-}
-
-section > div {
-  margin-top: 20px;
-  padding: 20px;
-  background: #f9f9f9;
-  border-left: 4px solid #007bb5;
-  border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-}
-
-section h3 {
-  color: #007665;
-  margin-bottom: 10px;
-  font-size: 1.3em;
-} */
-
-/* Estilos para Bootstrap Header manteniendo los colores originales
-header .navbar {
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
-}
-
-header .nav-link:hover {
-    color: aqua !important;
-}
-
-/* Personalizar el ícono del navbar toggler para que sea blanco */
-/* .navbar-toggler {
-    border-color: rgba(255,255,255,.5);
-}
-
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='m4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-
