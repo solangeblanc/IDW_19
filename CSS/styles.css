@@ -122,3 +122,15 @@ footer a {
 footer a:hover {
     text-decoration: underline;
 }
+
+/* Configuración específica para H1 responsive */
+header h1 {
+    display: none; /* Oculto por defecto (Mobile S y M) */
+}
+
+/* Visible desde Mobile L (425px) en adelante */
+@media (min-width: 425px) {
+    header h1 {
+        display: block !important;
+    }
+}
