@@ -1,4 +1,4 @@
-/* Estilos generales */
+/* Reset y estilos generales */
 html, body {
     height: 100%;
 }
@@ -10,51 +10,61 @@ body {
     color: black;
     display: flex;
     flex-direction: column;
+    min-height: 100vh; 
 }
 
+/* Header */
 header {
-    width: 100%;    
+    position: fixed;      
+    top: 0;
+    left: 0;
+    width: 100%;
     background-color: #007bb5;
     color: #fff;
     padding: 20px 0 10px 0;
     text-align: center;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6); 
+    z-index: 999;
 }
 
 header h1 {
     margin: 0 0 10px 0;
     font-size: 2em;
     text-align: center;
+    display: none; /* Oculto por defecto (Mobile S y M) */
 }
 
-nav a {
+/* Navegación */
+nav .nav-link {
     color: #fff;
     font-weight: 500;
     text-decoration: none;
-    margin: 0 10px;
     transition: color 0.2s;
 }
 
-nav a:hover {
+nav .nav-link:hover {
     color: aqua;
 }
 
+/* Main */
 main {
-    max-width: 1200px;
-    margin: 40px auto 0 auto;
-    padding: 0 15px;
-    flex: 1; 
+    flex: 1;             
+    width: 100%;         
+    max-width: 100%;     
+    margin: 0 auto;      
+    padding: 140px 30px 60px 30px; 
 }
 
+/* Secciones */
 section {
     margin-bottom: 20px;
 }
 
 section h2 {
     margin-top: 0;
+    margin-bottom: 18px;
     color: #007665;
     font-size: 1.5em;
-    margin-bottom: 18px;
     text-align: center;
 }
 
@@ -124,13 +134,35 @@ footer a:hover {
 }
 
 /* Configuración específica para H1 responsive */
-header h1 {
-    display: none; /* Oculto por defecto (Mobile S y M) */
-}
-
-/* Visible desde Mobile L (425px) en adelante */
 @media (min-width: 425px) {
     header h1 {
         display: block !important;
     }
+}
+
+/* Imágenes responsivas institucional */
+.img-institucional {
+    max-width: 100%;  
+    height: auto;      
+    display: block;    
+    margin: 0 auto;    
+}
+
+/* Ajustes para tablets y móviles */
+@media (max-width: 768px) {
+    main {
+        padding-top: 120px; /* menos altura de header en tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding-top: 110px; /* menos altura de header en móviles pequeños */
+        padding-bottom: 30px; /* evita espacio extra debajo del footer */
+    }
+}
+
+/* Header shadow dinámico (opcional si quieres agregar sombra al hacer scroll) */
+.header-shadow {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
 }
