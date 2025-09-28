@@ -78,7 +78,10 @@ section h2 {
 
 .card-img-top {
     height: 250px;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center;
+    background-color: #fff;
+    /* opcional, para que no se vea gris detrás */
 }
 
 .collapse-content {
@@ -162,7 +165,13 @@ footer a:hover {
     }
 }
 
-/* Header shadow dinámico (opcional si quieres agregar sombra al hacer scroll) */
-.header-shadow {
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
+section.my-5 {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    /* sombra suave */
+    background-color: #ffffff;
+    /* opcional, para que se note más */
+    border-radius: 8px;
+    /* opcional, bordes suaves */
+    padding: 20px;
+    /* opcional, para que no quede pegado */
 }
