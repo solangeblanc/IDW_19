@@ -34,7 +34,7 @@
   <!-- Sección Contacto -->
   <section class="mb-5">
     <h2 class="text-center">Contacto</h2>
-    <p class="text-start mb-4">Envíanos tu consulta, comentario y/o sugerencia completando el siguiente formulario. Estamos aquí para ayudarte y responder todas tus inquietudes de manera rápida y eficaz.</p>
+    <p class="text-center mb-4">Envíanos tu consulta, comentario y/o sugerencia completando el siguiente formulario. Estamos aquí para ayudarte y responder todas tus inquietudes de manera rápida y eficaz.</p>
 
     <!-- Formulario de contacto -->
     <div class="row justify-content-center mb-5">
@@ -77,15 +77,17 @@
       </div>
     </div>
   </section>
-  
-  <!-- Sección Cómo encontrarnos -->
+
+  <section class="text-center mb-4">
+  <div class="container">
+    <h2 class="mb-3">Cómo encontrarnos</h2>
+    <p>Contactate con nosotros y visita nuestra clínica en persona o a través de los medios de comunicación disponibles. Estamos para ayudarte y responder todas tus consultas.</p>
+  </div>
+</section>
+
 <section class="my-5">
   <div class="container">
-    <h2 class="text-center mb-4">Cómo encontrarnos</h2>
-    <p class="text-start mb-4">Contactate con nosotros y visita nuestra clínica en persona o a través de los medios de comunicación disponibles. Estamos para ayudarte y responder todas tus consultas.</p>
-
-    <div class="row g-4 align-items-start">
-      <!-- Información de contacto -->
+  <div class="row g-4 align-items-start">
       <div class="col-md-6">
         <div class="card p-3 h-100 shadow-sm">
           <h4 class="text-start">Información de contacto</h4>
@@ -94,7 +96,6 @@
         </div>
       </div>
 
-      <!-- Mapa -->
       <div class="col-md-6">
         <div class="card p-3 h-100 shadow-sm">
           <iframe 
@@ -110,6 +111,7 @@
     </div>
   </div>
 </section>
+
 </main>
 
 <footer class="text-center py-3">
@@ -123,15 +125,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Alert con JS -->
-<script>
-  const form = document.querySelector('form');
-  const alertDiv = document.getElementById('formAlert');
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault(); 
-    alertDiv.classList.remove('d-none'); 
-  });
-</script>
+<script src="js/app.js"></script>
 
 </body>
 </html>

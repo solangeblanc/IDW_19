@@ -34,5 +34,10 @@ El trabajo cuenta con las siguientes páginas:
 - `institucional.html`       Información institucional.  
 - `contacto.html`   Página de contacto.  
 
+Una carpeta js que contiene el siguiente archivo:
+- `app.js`
+
 Además, se incluye un archivo de estilos dentro de la carpeta CSS:  
 - `styles.css`        Define el diseño básico del sitio.
+
+Y dentro de la carpeta CSS también se encuentra otra carpeta llamada "imagenes" que contiene imágenes que se utilizan en el proyecto. 

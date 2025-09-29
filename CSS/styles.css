@@ -60,12 +60,34 @@ section {
     margin-bottom: 20px;
 }
 
+section.my-5 h2 {
+    margin-bottom: 30px; 
+}
+
+section.my-5 {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+}
+
 section h2 {
     margin-top: 0;
     margin-bottom: 18px;
     color: #007665;
     font-size: 1.5em;
     text-align: center;
+}
+
+.card-img-container {
+    height: 250px; 
+    overflow: hidden;
+}
+
+.card-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* Imágenes responsivas institucional */
@@ -93,12 +115,20 @@ section h2 {
     font-size: 0.95em;
 }
 
+.card-img-bienestar {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
 .card-img-top {
     height: 250px;
     object-fit: contain;
     object-position: center;
     background-color: #fff;
-    /* opcional, para que no se vea gris detrás */
+    
 }
 
 .collapse-content {
@@ -215,13 +245,3 @@ footer a:hover {
     }
 }
 
-section.my-5 {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    /* sombra suave */
-    background-color: #ffffff;
-    /* opcional, para que se note más */
-    border-radius: 8px;
-    /* opcional, bordes suaves */
-    padding: 20px;
-    /* opcional, para que no quede pegado */
-}
