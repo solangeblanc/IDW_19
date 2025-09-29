@@ -68,6 +68,23 @@ section h2 {
     text-align: center;
 }
 
+/* Imágenes responsivas institucional */
+.img-institucional {
+    width: 800px !important;
+    height: 500px !important;
+    object-fit: cover !important;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+.carousel-item img {
+  height: 800px;         
+  object-fit: cover;     
+  width: 100%;          
+  border-radius: 8px;   
+}
+
 /* Cards interactivas */
 .card-text-fixed {
     background-color: #f9f9f9;
@@ -182,14 +199,6 @@ footer a:hover {
     header h1 {
         display: block !important;
     }
-}
-
-/* Imágenes responsivas institucional */
-.img-institucional {
-    max-width: 100%;  
-    height: auto;      
-    display: block;    
-    margin: 0 auto;    
 }
 
 /* Ajustes para tablets y móviles */
