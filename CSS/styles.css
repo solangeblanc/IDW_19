@@ -70,9 +70,9 @@ section h2 {
 
 /* Imágenes responsivas institucional */
 .img-institucional {
-    width: 800px !important;
-    height: 500px !important;
-    object-fit: cover !important;
+    width: 800px;
+    height: 500px;
+    object-fit: cover;
     display: block;
     margin: 0 auto;
     border-radius: 8px;
@@ -204,24 +204,20 @@ footer a:hover {
 /* Ajustes para tablets y móviles */
 @media (max-width: 768px) {
     main {
-        padding-top: 120px; /* menos altura de header en tablets */
+        padding-top: 120px; 
     }
 }
 
 @media (max-width: 480px) {
     main {
-        padding-top: 110px; /* menos altura de header en móviles pequeños */
-        padding-bottom: 30px; /* evita espacio extra debajo del footer */
+        padding-top: 110px; 
+        padding-bottom: 30px; 
     }
 }
 
 section.my-5 {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    /* sombra suave */
     background-color: #ffffff;
-    /* opcional, para que se note más */
     border-radius: 8px;
-    /* opcional, bordes suaves */
     padding: 20px;
-    /* opcional, para que no quede pegado */
 }
