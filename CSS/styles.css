@@ -344,7 +344,7 @@ footer a:hover {
 
 [data-bs-theme="dark"] .form-control:focus {
     background-color: #0d1117;
-    border-color: #58a6ff;
+    border-color: #3b597c;
     color: #e6edf3;
     box-shadow: 0 0 0 0.2rem rgba(88, 166, 255, 0.25);
 }
