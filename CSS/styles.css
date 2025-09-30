@@ -92,9 +92,9 @@ section h2 {
 
 /* Imágenes responsivas institucional */
 .img-institucional {
-    width: 800px !important;
-    height: 500px !important;
-    object-fit: cover !important;
+    width: 800px;
+    height: 500px;
+    object-fit: cover;
     display: block;
     margin: 0 auto;
     border-radius: 8px;
