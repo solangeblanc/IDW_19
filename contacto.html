@@ -1,12 +1,17 @@
-<!DOCTYPE html>
+<!DOCTYP  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="CSS/styles.css">tml>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Institucional</title>
+  <!-- Icono de navegador (Favicon) -->
   <link rel="icon" type="image/png" href="./CSS/imagenes/IDW_S.A1-removebg-preview.png">
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="CSS/styles.css">
 </head>html>
 <body>
@@ -17,9 +22,15 @@
       <img src="./CSS/imagenes/IDW_S.A1-removebg-preview.png" alt="Logo Clinica IDW" style="height: 50px;">
     </a>
     <h1 class="mb-0 position-absolute start-50 translate-middle-x text-center">Bienvenido a la Clinica IDW</h1>
-    <button class="navbar-toggler navbar-dark d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="d-flex align-items-center gap-2">
+      <!-- Botón de modo oscuro -->
+      <button id="darkModeToggle" class="btn btn-outline-light btn-sm" type="button" title="Cambiar modo oscuro">
+        <i class="bi bi-moon-fill" id="darkModeIcon"></i>
+      </button>
+      <button class="navbar-toggler navbar-dark d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
   </div>
   <div class="collapse navbar-collapse d-lg-block w-100" id="navbarNav">
     <nav class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3 py-2">
