@@ -44,6 +44,59 @@
   </div>
 </header>
 
+<main class="container-fluid alta-medicos-section mb-5">
+
+  <!-- Formulario de Alta de Médicos -->
+  
+  <section id="altaMedicosContainer">
+    <div class="text-center mb-4">
+      <h2>Alta de Médicos</h2>
+      <p>Complete el formulario a continuación para registrar un nuevo médico en el sistema.</p>
+    </div>
+
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-12">
+        <div class="card p-4 shadow-sm">
+          <form id="formAltaMedico">
+            <div class="mb-3">
+              <label for="nombre" class="form-label form-label-custom">Nombre y Apellido:</label>
+            <input type="text" id="nombre" class="form-control" placeholder="Ej: Juan Pérez">
+          </div>
+          <div class="mb-3">
+            <label for="especialidad" class="form-label">Especialidad:</label>
+            <input type="text" id="especialidad" class="form-control" placeholder="Ej: Cardiología">
+          </div>
+          <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono:</label>
+            <input type="tel" id="telefono" class="form-control" placeholder="+54 11 1234 5678">
+          </div>
+          <div class="mb-3">
+            <label for="obrasSociales" class="form-label">Obras Sociales:</label>
+            <input type="text" id="obrasSociales" class="form-control" placeholder="Separadas por coma">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo:</label>
+            <input type="email" id="email" class="form-control" placeholder="ejemplo@correo.com">
+          </div>
+          <div class="text-center mt-3">
+                          <button type="submit" class="btn btn-sm-primary">Registrar Médico</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tabla de Médicos Registrados -->
+  <section class="row justify-content-center">
+    <div class="col-md-10">
+      <h2 class="text-center mb-3">Médicos Registrados</h2>
+      <div id="alertaMedicos" class="text-center mb-3"></div>
+      <div id="medicosRegistrados" class="table-responsive"></div>
+    </div>
+  </section>
+
+</main>
+
 <footer class="text-center py-3">
   <a href="https://www.instagram.com">Instagram</a> |
   <a href="https://www.facebook.com">Facebook</a> |
