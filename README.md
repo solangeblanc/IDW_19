@@ -1,4 +1,4 @@
-# Trabajo Final Integrador - Etapa 2  
+# Trabajo Final Integrador - Etapa 3  
 **Introducción al Desarrollo Web - 2° Cuatrimestre 2025**  
 **Tecnicatura Universitaria en Desarrollo Web (UNER)**  
 
@@ -20,7 +20,7 @@ IDW_19
 - Conectar el HTML con CSS.  
 - Establecer un estilo simple para la primera versión del sitio. 
 
-## Objetivos de esta etapa
+## Objetivos de la 2da etapa
 - Adaptación del diseño mediante Bootstrap 5 (uso de clases y componentes)
 - Combinar con el diseño propio. 
 - Catálogo de profesionales.
@@ -28,14 +28,25 @@ IDW_19
 - Diseño claro y consistente.
 - Implementación de modo oscuro
 
+## Objetivos de la 3era etapa
+- Implementar las funcionalidades de administración de Médicos, incluyendo listar, crear, visualizar, modificar y eliminar registros.
+- Inicializar el LocalStorage con datos predeterminados mediante una constante exportada desde un archivo JavaScript. 
+- Persistir la información de los profesionales utilizando la API LocalStorage de JavaScript.
+- Mostrar los datos en una tabla HTML, asegurando una visualización clara y ordenada.
+- Utilizar elementos de formulario adecuados según el tipo de dato (texto, correo, número, etc.).
+- (Opcional) Extender las mismas funcionalidades para Especialidades y Turnos.
+- Ver el tema del login para admin (no lo dice el pdf).
+
 ## Estructura del sitio  
 El trabajo cuenta con las siguientes páginas:  
 - `index.html`      Página de inicio o portada.  
 - `institucional.html`       Información institucional.  
-- `contacto.html`   Página de contacto.  
+- `contacto.html`   Página de contacto. 
+- `altaMedicos.html`   Página de Alta de Medicos. 
 
-Una carpeta js que contiene el siguiente archivo:
+Una carpeta js que contiene los siguientes archivo:
 - `app.js`
+- `altaMedicos.js`
 
 Además, se incluye un archivo de estilos dentro de la carpeta CSS:  
 - `styles.css`        Define el diseño básico del sitio.

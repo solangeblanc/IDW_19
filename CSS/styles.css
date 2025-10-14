@@ -203,7 +203,7 @@ section h2 {
     margin-bottom: 10px;
 }
 
-/* Sección Alta de Médicos */
+/* Alta de Medicos */
 
 .alta-medicos-section {
     padding-top: 150px; 
@@ -211,24 +211,11 @@ section h2 {
 
 /* Tarjeta del formulario */
 #altaMedicosContainer .card {
-    width: 100%; 
+    width: 100%;
     border-radius: 20px;
 }
 
 /* Botón personalizado */
-.btn-alta-medicos {
-    background-color: #007bb5;
-    color: #fff;
-    padding: 10px 30px;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-}
-
-.btn-alta-medicos:hover {
-    background-color: #005f8d;
-    color: #fff;
-}
 
 #medicosRegistrados tr td,
 #medicosRegistrados tr th {
@@ -246,7 +233,7 @@ section h2 {
 }
 
 #medicosRegistrados th {
-    background-color: #007bb5; 
+    background-color: #007bb5;
     color: #fff;
 }
 
@@ -310,26 +297,17 @@ footer a:hover {
 
 @media (max-width: 768px) {
     main {
-<<<<<<< HEAD
         padding-top: 140px; /* Ajustado para móviles con header colapsado */
-=======
-        padding-top: 120px; 
->>>>>>> ed937679239963a4139fe073ea5e0b7fad4d8172
     }
 }
 
 @media (max-width: 480px) {
     main {
-<<<<<<< HEAD
         padding-top: 130px; /* Ajustado para móviles pequeños */
-=======
-        padding-top: 110px; 
->>>>>>> ed937679239963a4139fe073ea5e0b7fad4d8172
         padding-bottom: 30px; 
     }
 }
 
-<<<<<<< HEAD
 /* ========================================
    ESTILOS PARA MODO OSCURO
    Material Design Dark Theme Palette
@@ -426,11 +404,9 @@ footer a:hover {
     color: #ffffff;
 }
 
-=======
-section.my-5 {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 20px;
+/* Tabla en modo oscuro*/
+
+[data-bs-theme="dark"] .dark-header th {
+    background-color: #207935;
+    color: #f0f6fc;
 }
->>>>>>> ed937679239963a4139fe073ea5e0b7fad4d8172
