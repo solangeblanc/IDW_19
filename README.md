@@ -40,13 +40,14 @@ IDW_19
 ## Estructura del sitio  
 El trabajo cuenta con las siguientes páginas:  
 - `index.html`      Página de inicio o portada.  
-- `institucional.html`       Información institucional.  
+- `institucional.html`   Información institucional.  
 - `contacto.html`   Página de contacto. 
 - `altaMedicos.html`   Página de Alta de Medicos. 
 
 Una carpeta js que contiene los siguientes archivo:
-- `app.js`
-- `altaMedicos.js`
+- `altaMedicos.js` Gestiona todo lo relacionado con el formulario de alta de médicos.
+- `app.js` Contiene funcionalidades generales de la web, como el modo oscuro, los mensajes de alerta de los formularios de contacto, y la interacción con las flip cards.
+- `data.js` Define y exporta los datos iniciales que se usan para inicializar localStorage.
 
 Además, se incluye un archivo de estilos dentro de la carpeta CSS:  
 - `styles.css`        Define el diseño básico del sitio.
