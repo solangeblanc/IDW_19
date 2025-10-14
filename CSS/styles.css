@@ -203,6 +203,70 @@ section h2 {
     margin-bottom: 10px;
 }
 
+/* Sección Alta de Médicos */
+
+.alta-medicos-section {
+    padding-top: 150px; 
+}
+
+/* Tarjeta del formulario */
+#altaMedicosContainer .card {
+    width: 100%; 
+    border-radius: 20px;
+}
+
+/* Botón personalizado */
+.btn-alta-medicos {
+    background-color: #007bb5;
+    color: #fff;
+    padding: 10px 30px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-alta-medicos:hover {
+    background-color: #005f8d;
+    color: #fff;
+}
+
+#medicosRegistrados tr td,
+#medicosRegistrados tr th {
+    border: 1px solid #ccc; 
+    padding: 10px;
+    border-radius: 8px;
+}
+
+#medicosRegistrados tr {
+    background-color: #f8f9fa; 
+}
+
+#medicosRegistrados tr:hover {
+    background-color: #e0e0e0; 
+}
+
+#medicosRegistrados th {
+    background-color: #007bb5; 
+    color: #fff;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 10px; 
+    width: 100%;
+}
+
+.alerta-mensaje {
+  background-color: #fff9c4; 
+  color: #333;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid #f0e68c;
+  display: inline-block;
+  margin: 10px auto;
+  font-weight: 500;
+}
+
 /* Footer */
 footer {
     background: #007bb5;
