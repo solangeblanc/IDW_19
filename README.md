@@ -47,6 +47,7 @@ El trabajo cuenta con las siguientes páginas:
 Una carpeta js que contiene los siguientes archivo:
 - `altaMedicos.js` Gestiona todo lo relacionado con el formulario de alta de médicos.
 - `app.js` Contiene funcionalidades generales de la web, como el modo oscuro, los mensajes de alerta de los formularios de contacto, y la interacción con las flip cards.
+- `catalogoProfesionales.js` Genera dinámicamente las cards de los profesionales de la clínica en la sección correspondiente.
 - `data.js` Define y exporta los datos iniciales que se usan para inicializar localStorage.
 
 Además, se incluye un archivo de estilos dentro de la carpeta CSS:  

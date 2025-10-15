@@ -46,75 +46,90 @@
 <main class="container-fluid alta-medicos-section mb-5">
 
   <!-- Formulario de Alta de Médicos -->
-  
   <section id="altaMedicosContainer">
     <div class="text-center mb-4">
       <h2>Alta de Médicos</h2>
       <p>Complete el formulario a continuación para registrar un nuevo médico en el sistema.</p>
     </div>
 
-<div class="row justify-content-center mb-5">
-  <div class="col-12 col-lg-12">
-    <div class="card p-4 shadow-sm">
-      <form id="formAltaMedico">
-        <div class="mb-3">
-          <label for="nombre" class="form-label form-label-custom">Nombre y Apellido:</label>
-          <input type="text" id="nombre" class="form-control" placeholder="Ej: Juan Pérez">
-        </div>
+    <div class="row justify-content-center mb-5">
+      <div class="col-12 col-lg-12">
+        <div class="card p-4 shadow-sm">
+          <form id="formAltaMedico">
+            <div class="mb-3">
+              <label for="nombre" class="form-label form-label-custom">Nombre y Apellido:</label>
+              <input type="text" id="nombre" class="form-control" placeholder="Ej: Juan Pérez">
+            </div>
 
-        <div class="mb-3">
-          <label for="especialidad" class="form-label form-label-custom">Especialidad:</label>
-          <input type="text" id="especialidad" class="form-control" placeholder="Ej: Cardiología">
-        </div>
+            <div class="mb-3">
+              <label for="especialidad" class="form-label form-label-custom">Especialidad:</label>
+              <input type="text" id="especialidad" class="form-control" placeholder="Ej: Cardiología">
+            </div>
 
-        <div class="mb-3">
-          <label for="telefono" class="form-label form-label-custom">Teléfono:</label>
-          <input type="tel" id="telefono" class="form-control" placeholder="+54 11 1234 5678">
-        </div>
+            <div class="mb-3">
+              <label for="telefono" class="form-label form-label-custom">Teléfono:</label>
+              <input type="tel" id="telefono" class="form-control" placeholder="+54 11 1234 5678">
+            </div>
 
-        <div class="mb-3">
-          <label for="obrasSociales" class="form-label form-label-custom">Obras Sociales:</label>
-          <input type="text" id="obrasSociales" class="form-control" placeholder="Separadas por coma">
-        </div>
+            <div class="mb-3">
+              <label for="obrasSociales" class="form-label form-label-custom">Obras Sociales:</label>
+              <input type="text" id="obrasSociales" class="form-control" placeholder="Separadas por coma">
+            </div>
 
-        <div class="mb-3">
-          <label for="email" class="form-label form-label-custom">Correo:</label>
-          <input type="email" id="email" class="form-control" placeholder="ejemplo@correo.com">
-        </div>
+            <div class="mb-3">
+              <label for="email" class="form-label form-label-custom">Correo:</label>
+              <input type="email" id="email" class="form-control" placeholder="ejemplo@correo.com">
+            </div>
 
-        <div class="text-center mt-3">
-          <button type="submit" class="btn btn-sm-primary">Registrar Médico</button>
+            <div class="text-center mt-3">
+              <button type="submit" class="btn btn-sm-primary">Registrar Médico</button>
+            </div>
+          </form>
         </div>
+      </div>
+    </div>
+
+    <div id="alertaMedicos" class="text-center mb-3"></div>
+  </section>
+
+  <!-- Tabla de Médicos Registrados -->
+  <section class="row justify-content-center">
+    <div class="col-md-10">
+      <h2 class="text-center mb-3">Médicos Registrados</h2>
+
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered" id="tablaMedicos">
+          <thead class="table-primary dark-header">
+            <tr>
+              <th>Nombre</th>
+              <th>Especialidad</th>
+              <th>Teléfono</th>
+              <th>Obras Sociales</th>
+              <th>Email</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="medicosRegistrados">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Especialidades -->
+  <section class="row justify-content-center mt-5">
+    <div class="col-md-10">
+      <h2 class="text-center mb-3">Especialidades</h2>
+
+      <form id="formEspecialidad" class="d-flex justify-content-center mb-3">
+        <input type="text" id="nuevaEspecialidad" class="form-control me-2" placeholder="Agregar especialidad">
+        <button type="submit" class="btn btn-sm-primary">Agregar</button>
       </form>
-    </div>
-  </div>
-</div>
-<div id="alertaMedicos" class="text-center mb-3"></div>
 
- <!-- Tabla de Médicos Registrados -->
-<section class="row justify-content-center">
-  <div class="col-md-10">
-    <h2 class="text-center mb-3">Médicos Registrados</h2>
-
-    <!-- Contenedor responsive -->
-    <div class="table-responsive">
-      <table class="table table-striped table-bordered" id="tablaMedicos">
-        <thead class="table-primary dark-header">
-          <tr>
-            <th>Nombre</th>
-            <th>Especialidad</th>
-            <th>Teléfono</th>
-            <th>Obras Sociales</th>
-            <th>Email</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody id="medicosRegistrados">
-        </tbody>
-      </table>
+      <ul id="listaEspecialidades" class="list-group"></ul>
+      <div id="alertaEspecialidades" class="text-center mt-3"></div>
     </div>
-  </div>
-</section>
+  </section>
 
 </main>
 
@@ -125,7 +140,6 @@
   <p class="mb-0">Desarrollado por Grupo 19 &copy;</p>
 </footer>
 
-<!-- Scripts -->
 <script type="module" src="js/altaMedicos.js"></script>
 <script src="js/app.js"></script>
 </body>

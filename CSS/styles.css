@@ -52,7 +52,11 @@ main {
     width: 100%;         
     max-width: 100%;     
     margin: 0 auto;      
-    padding: 160px 30px 60px 30px; /* Aumentado para compensar header de dos líneas */
+    padding: 160px 30px 60px 30px; 
+}
+
+body.index main {
+    padding-top: 70px; 
 }
 
 /* Secciones */
@@ -349,11 +353,11 @@ footer a:hover {
 }
 
 [data-bs-theme="dark"] footer a {
-    color: #58a6ff;
+    color: #238675;
 }
 
 [data-bs-theme="dark"] footer a:hover {
-    color: #79c0ff;
+    color: #289885;
 }
 
 /* Cards en modo oscuro */
@@ -362,6 +366,7 @@ footer a:hover {
     border-color: #30363d;
     color: #e6edf3;
 }
+
 
 /* Secciones principales en modo oscuro */
 [data-bs-theme="dark"] section.my-5 {
@@ -409,4 +414,28 @@ footer a:hover {
 [data-bs-theme="dark"] .dark-header th {
     background-color: #207935;
     color: #f0f6fc;
+}
+
+/* Flip cards institucionales - modo claro */
+.institucional-card {
+    background-color: #007bb5; /* azul */
+    color: white;
+}
+
+/* Flip cards institucionales - modo oscuro */
+[data-bs-theme="dark"] .institucional-card {
+    background-color: #238636; /* verde */
+    color: white;
+}
+
+/* Flip card back en modo claro */
+.flip-card-back {
+    background-color: #eaeaea;
+    color: #333;
+}
+
+/* Flip card back en modo oscuro */
+[data-bs-theme="dark"] .flip-card-back {
+    background-color: #555e63;
+    color: white;
 }
