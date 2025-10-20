@@ -43,6 +43,7 @@ El trabajo cuenta con las siguientes páginas:
 - `institucional.html`   Información institucional.  
 - `contacto.html`   Página de contacto. 
 - `altaMedicos.html`   Página de Alta de Medicos. 
+- `login.html`   Página de login de admin. 
 
 Una carpeta js que contiene los siguientes archivo:
 - `altaMedicos.js` Gestiona todo lo relacionado con el formulario de alta de médicos.
