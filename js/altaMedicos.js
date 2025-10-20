@@ -167,6 +167,15 @@ document.addEventListener('DOMContentLoaded', () => {
     formMedico.addEventListener('submit', actualizar);
   }
 
+    window.eliminarMedico = function(idx) {
+    if (confirm('¿Eliminar este médico?')) {
+      medicos.splice(idx, 1);
+      guardarMedicos();
+      mostrarMedicos();
+      mostrarAlerta('🗑️ Médico eliminado.', alertaMedicosDiv);
+    }
+  }
+
   /*** CRUD ESPECIALIDADES ***/
   let editEspecialidadIndex = null; // índice de edición activo
 
