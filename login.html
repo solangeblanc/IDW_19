@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Clínica IDW</title>
+    <link rel="icon" type="image/png" href="./CSS/imagenes/IDW_S.A1-removebg-preview.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/styles.css">
+</head>
+
+<body class="d-flex align-items-center justify-content-center" style="min-height: 100vh; background-color: #eef5f5;">
+
+    <div class="card p-4 shadow-sm" style="width: 100%; max-width: 400px;">
+        <h2 class="text-center mb-3">Acceso Administrador</h2>
+        <form id="formLogin">
+            <div class="mb-3">
+                <label for="usuario" class="form-label">Usuario</label>
+                <input type="text" id="usuario" class="form-control" placeholder="Ej: admin" required>
+            </div>
+            <div class="mb-3">
+                <label for="clave" class="form-label">Contraseña</label>
+                <input type="password" id="clave" class="form-control" placeholder="Ej: clinica123" required>
+            </div>
+            <div id="loginAlerta" class="text-center text-danger mb-2"></div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-sm-primary w-100">Ingresar</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const USUARIO_ADMIN = {
+            usuario: "admin",
+            clave: "clinica123"
+        };
+
+        const formLogin = document.getElementById('formLogin');
+        const alerta = document.getElementById('loginAlerta');
+
+        formLogin.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const usuario = document.getElementById('usuario').value.trim();
+            const clave = document.getElementById('clave').value.trim();
+
+            if (usuario === USUARIO_ADMIN.usuario && clave === USUARIO_ADMIN.clave) {
+                localStorage.setItem("logueado", "true");
+                window.location.href = "altaMedicos.html";
+            } else {
+                alerta.textContent = " Usuario o contraseña incorrectos.";
+            }
+        });
+    </script>
+
+</body>
+
+</html>

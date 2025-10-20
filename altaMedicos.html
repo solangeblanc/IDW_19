@@ -31,6 +31,15 @@
       <button class="navbar-toggler navbar-dark d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      <button class="btn btn-outline-danger btn-sm" onclick="logout()">Cerrar sesión</button>
+      
+      <script>
+        function logout() {
+          localStorage.removeItem("logueado");
+          window.location.href = "login.html";
+        }
+      </script>
+
     </div>
   </div>
   <div class="collapse navbar-collapse d-lg-block w-100" id="navbarNav">
