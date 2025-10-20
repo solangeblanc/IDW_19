@@ -22,31 +22,31 @@
     <a href="index.html">
       <img src="./CSS/imagenes/IDW_S.A1-removebg-preview.png" alt="Logo Clinica IDW" style="height: 50px;">
     </a>
-    <h1 class="mb-0 position-absolute start-50 translate-middle-x text-center">Bienvenido a la Clínica IDW</h1>
+    <h1 class="mb-0 position-absolute start-50 translate-middle-x text-center">Bienvenido a la Clinica IDW</h1>
     <div class="d-flex align-items-center gap-2">
+      <!-- Botón de modo oscuro -->
       <button id="darkModeToggle" class="btn btn-outline-light btn-sm" type="button" title="Cambiar modo oscuro">
         <i class="bi bi-moon-fill" id="darkModeIcon"></i>
       </button>
-      <button class="navbar-toggler navbar-dark d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <button class="navbar-toggler navbar-dark d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
     </div>
   </div>
-
   <div class="collapse navbar-collapse d-lg-block w-100" id="navbarNav">
     <nav class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3 py-2">
       <a href="index.html" class="nav-link">Inicio</a>
       <a href="institucional.html" class="nav-link">Institucional</a>
       <a href="contacto.html" class="nav-link">Contacto</a>
       <a href="altaMedicos.html" class="nav-link">Alta de Médicos</a>
-    </nav>
+  </nav>
   </div>
 </header>
 
 <main class="container-fluid alta-medicos-section mb-5">
 
   <!-- Formulario de Alta de Médicos -->
-  <section id="altaMedicosContainer">
+  <section id="altaMedicosContainer" class="mb-5">
     <div class="text-center mb-4">
       <h2>Alta de Médicos</h2>
       <p>Complete el formulario a continuación para registrar un nuevo médico en el sistema.</p>
@@ -82,7 +82,7 @@
             </div>
 
             <div class="text-center mt-3">
-              <button type="submit" class="btn btn-sm-primary">Registrar Médico</button>
+              <button type="submit" class="btn-sm-primary">Registrar Médico</button>
             </div>
           </form>
         </div>
@@ -93,10 +93,9 @@
   </section>
 
   <!-- Tabla de Médicos Registrados -->
-  <section class="row justify-content-center">
-    <div class="col-md-10">
-      <h2 class="text-center mb-3">Médicos Registrados</h2>
-
+  <section class="row justify-content-center mb-5">
+    <div class="col-md-10 text-center">
+      <h2 class="mb-3">Médicos Registrados</h2>
       <div class="table-responsive">
         <table class="table table-striped table-bordered" id="tablaMedicos">
           <thead class="table-primary dark-header">
@@ -109,21 +108,20 @@
               <th>Acciones</th>
             </tr>
           </thead>
-          <tbody id="medicosRegistrados">
-          </tbody>
+          <tbody id="medicosRegistrados"></tbody>
         </table>
       </div>
     </div>
   </section>
 
   <!-- Especialidades -->
-  <section class="row justify-content-center mt-5">
-    <div class="col-md-10">
-      <h2 class="text-center mb-3">Especialidades</h2>
+  <section class="row justify-content-center mb-5">
+    <div class="col-md-10 text-center">
+      <h2 class="mb-3">Especialidades</h2>
 
       <form id="formEspecialidad" class="d-flex justify-content-center mb-3">
         <input type="text" id="nuevaEspecialidad" class="form-control me-2" placeholder="Agregar especialidad">
-        <button type="submit" class="btn btn-sm-primary">Agregar</button>
+        <button type="submit" class="btn-sm-primary">Agregar</button>
       </form>
 
       <ul id="listaEspecialidades" class="list-group"></ul>
@@ -132,52 +130,49 @@
   </section>
 
   <!-- Gestión de Turnos -->
-  <section class="mt-5">
-    <h2 class="text-center mb-3">Gestión de Turnos</h2>
+  <section class="row justify-content-center mb-5">
+    <div class="col-md-10 text-center">
+      <h2 class="mb-3">Gestión de Turnos</h2>
 
-    <form id="formAltaTurno" class="mb-5">
-      <div class="row g-3">
-  <div class="col-md-4">
-    <label for="nombrePaciente" class="form-label">Nombre del Paciente</label>
-    <input type="text" id="nombrePaciente" class="form-control" required>
-  </div>
+      <form id="formAltaTurno" class="mb-4">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label for="nombrePaciente" class="form-label">Nombre del Paciente</label>
+            <input type="text" id="nombrePaciente" class="form-control" required>
+          </div>
 
-  <div class="col-md-4">
-    <label for="medicoTurno" class="form-label">Médico</label>
-    <select id="medicoTurno" class="form-select" required>
-      <option value="">Seleccione...</option>
-    </select>
-  </div>
+          <div class="col-md-4">
+            <label for="medicoTurno" class="form-label">Médico</label>
+            <select id="medicoTurno" class="form-select" required>
+              <option value="">Seleccione...</option>
+            </select>
+          </div>
 
-  <div class="col-md-4">
-    <label for="especialidadTurno" class="form-label">Especialidad</label>
-    <select id="especialidadTurno" class="form-select" required>
-      <option value="">Seleccione...</option>
-    </select>
-  </div>
+          <div class="col-md-4">
+            <label for="especialidadTurno" class="form-label">Especialidad</label>
+            <select id="especialidadTurno" class="form-select" required>
+              <option value="">Seleccione...</option>
+            </select>
+          </div>
 
-  <div class="col-md-4">
-    <label for="fechaTurno" class="form-label">Fecha</label>
-    <input type="date" id="fechaTurno" class="form-control" required>
-  </div>
+          <div class="col-md-4">
+            <label for="fechaTurno" class="form-label">Fecha</label>
+            <input type="date" id="fechaTurno" class="form-control" required>
+          </div>
 
-  <div class="col-md-4">
-    <label for="horaTurno" class="form-label">Hora</label>
-    <input type="time" id="horaTurno" class="form-control" required>
-  </div>
-</div>
+          <div class="col-md-4">
+            <label for="horaTurno" class="form-label">Hora</label>
+            <input type="time" id="horaTurno" class="form-control" required>
+          </div>
+        </div>
 
-    <div class="mt-3 text-center">
-      <button type="submit" class="btn btn-sm-primary">Registrar Turno</button>
-    </div>
-    <div id="alertaTurnos" class="text-center mt-2"></div> 
+        <div class="mt-3 text-center">
+          <button type="submit" class="btn-sm-primary">Registrar Turno</button>
+        </div>
+        <div id="alertaTurnos" class="text-center mt-2"></div>
+      </form>
 
-</form>
-
-
-  <h2 class="mb-4">Turnos Registrados</h2>
-  <div class="row justify-content-center">
-    <div class="col-md-10">
+      <h2 class="mt-5 mb-3">Turnos Registrados</h2>
       <div class="table-responsive">
         <table class="table table-striped align-middle text-center mx-auto">
           <thead>
@@ -194,8 +189,7 @@
         </table>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
 </main>
 
@@ -206,6 +200,10 @@
   <p class="mb-0">Desarrollado por Grupo 19 &copy;</p>
 </footer>
 
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Scripts -->
 <script type="module" src="js/altaMedicos.js"></script>
 <script src="js/app.js"></script>
 </body>
