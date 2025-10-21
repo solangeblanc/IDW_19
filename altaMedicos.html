@@ -25,13 +25,17 @@
     </a>
     <h1 class="mb-0 position-absolute start-50 translate-middle-x text-center">Bienvenido a la Clínica IDW</h1>
     <div class="d-flex align-items-center gap-2">
-      <button id="darkModeToggle" class="btn btn-outline-light btn-sm" type="button" title="Cambiar modo oscuro">
+      <!-- Botones visibles solo en desktop (lg y superiores) -->
+      <button id="darkModeToggle" class="btn btn-outline-light btn-sm d-none d-lg-inline-block" type="button" title="Cambiar modo oscuro">
         <i class="bi bi-moon-fill" id="darkModeIcon"></i>
       </button>
+      <button class="btn btn-outline-light btn-sm d-none d-lg-inline-block" onclick="logout()" title="Cerrar sesión">
+        <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+      </button>
+      <!-- Botón hamburguesa solo en móvil/tablet -->
       <button class="navbar-toggler navbar-dark d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <button class="btn btn-outline-danger btn-sm" onclick="logout()">Cerrar sesión</button>
       
       <script>
         function logout() {
@@ -49,6 +53,16 @@
       <a href="institucional.html" class="nav-link">Institucional</a>
       <a href="contacto.html" class="nav-link">Contacto</a>
       <a href="altaMedicos.html" class="nav-link">Alta de Médicos</a>
+      
+      <!-- Botones dentro del menú hamburguesa (solo móvil/tablet) -->
+      <div class="d-lg-none w-100 d-flex flex-column gap-2 mt-2 px-3">
+        <button id="darkModeToggleMobile" class="btn btn-outline-light btn-sm w-100" type="button" title="Cambiar modo oscuro">
+          <i class="bi bi-moon-fill" id="darkModeIconMobile"></i> Modo Oscuro
+        </button>
+        <button class="btn btn-outline-light btn-sm w-100" onclick="logout()" title="Cerrar sesión">
+          <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+        </button>
+      </div>
     </nav>
   </div>
 </header>
