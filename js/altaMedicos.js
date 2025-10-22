@@ -89,22 +89,22 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function mostrarTurnos() {
-  const turnosValidos = turnos.filter(t => t != null);
-  tbodyTurnos.innerHTML = turnosValidos.length
-    ? turnosValidos.map((t, idx) => `
-      <tr>
-        <td>${t.paciente}</td>
-        <td>${t.medico}</td>
-        <td>${t.especialidad}</td>
-        <td>${t.fecha}</td>
-        <td>${t.hora}</td>
-        <td>
-          <button class="btn btn-warning btn-sm me-2" onclick="editarTurno(${idx})">Editar</button>
-          <button class="btn btn-danger btn-sm" onclick="eliminarTurno(${idx})">Eliminar</button>
-        </td>
-      </tr>`).join('')
-    : `<tr><td colspan="6" class="text-center">No hay turnos registrados</td></tr>`;
-}
+    const turnosValidos = turnos.filter(t => t != null);
+    tbodyTurnos.innerHTML = turnosValidos.length
+      ? turnosValidos.map((t, idx) => `
+        <tr>
+          <td>${t.paciente}</td>
+          <td>${t.medico}</td>
+          <td>${t.especialidad}</td>
+          <td>${t.fecha}</td>
+          <td>${t.hora}</td>
+          <td>
+            <button class="btn btn-warning btn-sm me-2" onclick="editarTurno(${idx})">Editar</button>
+            <button class="btn btn-danger btn-sm" onclick="eliminarTurno(${idx})">Eliminar</button>
+          </td>
+        </tr>`).join('')
+      : `<tr><td colspan="6" class="text-center">No hay turnos registrados</td></tr>`;
+  }
 
   /*** CRUD MÉDICOS ***/
   function agregarMedico(e) {
@@ -124,15 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
     formMedico.reset();
     mostrarAlerta("✅ Médico registrado correctamente.", alertaMedicosDiv);
   }
-
- window.eliminarTurno = function(idx) {
-  if (confirm('¿Eliminar este turno?')) {
-    turnos.splice(idx, 1);  // correcta
-    guardarTurnos();
-    mostrarTurnos();
-    mostrarAlerta('🗑️ Turno eliminado.', alertaTurnosDiv);
-  }
-}
 
   window.editarMedico = function(idx) {
     const med = medicos[idx];
@@ -167,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     formMedico.addEventListener('submit', actualizar);
   }
 
-    window.eliminarMedico = function(idx) {
+  window.eliminarMedico = function(idx) {
     if (confirm('¿Eliminar este médico?')) {
       medicos.splice(idx, 1);
       guardarMedicos();
@@ -179,138 +170,137 @@ document.addEventListener('DOMContentLoaded', () => {
   /*** CRUD ESPECIALIDADES ***/
   let editEspecialidadIndex = null; // índice de edición activo
 
-function mostrarEspecialidades() {
-  listaEspecialidadesUl.innerHTML = '';
-  especialidades.sort().forEach((esp, idx) => {
-    const li = document.createElement('li');
-    li.className = 'list-group-item d-flex justify-content-between align-items-center';
-
-    const spanTexto = document.createElement('span');
-    spanTexto.textContent = esp;
-
-    const divBotones = document.createElement('div');
-
-    // Botón Editar
-    const btnEditar = document.createElement('button');
-    btnEditar.className = 'btn btn-sm btn-warning me-2';
-    btnEditar.textContent = 'Editar';
-    btnEditar.addEventListener('click', () => {
-      inputNuevaEspecialidad.value = esp; // cargar en input
-      editEspecialidadIndex = idx; // guardar índice
-    });
-
-    // Botón Eliminar
-    const btnBorrar = document.createElement('button');
-    btnBorrar.className = 'btn btn-sm btn-danger';
-    btnBorrar.textContent = 'Eliminar';
-    btnBorrar.addEventListener('click', () => {
-      if (confirm(`¿Eliminar especialidad "${esp}"?`)) {
-        especialidades.splice(idx, 1);
-        mostrarEspecialidades();
-        mostrarAlerta('🗑️ Especialidad eliminada.', alertaEspecialidadesDiv);
-      }
-    });
-
-    divBotones.appendChild(btnEditar);
-    divBotones.appendChild(btnBorrar);
-
-    li.appendChild(spanTexto);
-    li.appendChild(divBotones);
-    listaEspecialidadesUl.appendChild(li);
-  });
-}
-
-// Modificar el submit del form para soportar edición
-function agregarEspecialidad(e) {
-  e.preventDefault();
-  let esp = inputNuevaEspecialidad.value.trim();
-  if (!esp || esp.length < 5 || esp[0] !== esp[0].toUpperCase()) {
-    mostrarAlerta("⚠️ La especialidad debe empezar con mayúscula y tener más de 4 letras.", alertaEspecialidadesDiv);
-    return;
-  }
-
-  if (editEspecialidadIndex !== null) {
-    especialidades[editEspecialidadIndex] = esp;
-    editEspecialidadIndex = null;
-    mostrarAlerta("✏️ Especialidad actualizada.", alertaEspecialidadesDiv);
-  } else {
-    if (especialidades.includes(esp)) {
-      mostrarAlerta("⚠️ Esta especialidad ya está en la lista.", alertaEspecialidadesDiv);
+  function agregarEspecialidad(e) {
+    e.preventDefault();
+    let esp = inputNuevaEspecialidad.value.trim();
+    if (!esp || esp.length < 5 || esp[0] !== esp[0].toUpperCase()) {
+      mostrarAlerta("⚠️ La especialidad debe empezar con mayúscula y tener más de 4 letras.", alertaEspecialidadesDiv);
       return;
     }
-    especialidades.push(esp);
-    mostrarAlerta("✅ Especialidad agregada.", alertaEspecialidadesDiv);
+
+    if (editEspecialidadIndex !== null) {
+      especialidades[editEspecialidadIndex] = esp;
+      editEspecialidadIndex = null;
+      mostrarAlerta("✏️ Especialidad actualizada.", alertaEspecialidadesDiv);
+    } else {
+      if (especialidades.includes(esp)) {
+        mostrarAlerta("⚠️ Esta especialidad ya está en la lista.", alertaEspecialidadesDiv);
+        return;
+      }
+      especialidades.push(esp);
+      mostrarAlerta("✅ Especialidad agregada.", alertaEspecialidadesDiv);
+    }
+
+    inputNuevaEspecialidad.value = '';
+    mostrarEspecialidades();
   }
 
-  inputNuevaEspecialidad.value = '';
-  mostrarEspecialidades();
-}
+  function mostrarEspecialidades() {
+    listaEspecialidadesUl.innerHTML = '';
+    especialidades.sort().forEach((esp, idx) => {
+      const li = document.createElement('li');
+      li.className = 'list-group-item d-flex justify-content-between align-items-center';
+
+      const spanTexto = document.createElement('span');
+      spanTexto.textContent = esp;
+
+      const divBotones = document.createElement('div');
+
+      const btnEditar = document.createElement('button');
+      btnEditar.className = 'btn btn-sm btn-warning me-2';
+      btnEditar.textContent = 'Editar';
+      btnEditar.addEventListener('click', () => {
+        inputNuevaEspecialidad.value = esp;
+        editEspecialidadIndex = idx;
+      });
+
+      const btnBorrar = document.createElement('button');
+      btnBorrar.className = 'btn btn-sm btn-danger';
+      btnBorrar.textContent = 'Eliminar';
+      btnBorrar.addEventListener('click', () => {
+        if (confirm(`¿Eliminar especialidad "${esp}"?`)) {
+          especialidades.splice(idx, 1);
+          mostrarEspecialidades();
+          mostrarAlerta('🗑️ Especialidad eliminada.', alertaEspecialidadesDiv);
+        }
+      });
+
+      divBotones.appendChild(btnEditar);
+      divBotones.appendChild(btnBorrar);
+
+      li.appendChild(spanTexto);
+      li.appendChild(divBotones);
+      listaEspecialidadesUl.appendChild(li);
+    });
+  }
 
   /*** CRUD TURNOS COMPLETO ***/
   function agregarTurno(e) {
-  e.preventDefault();
+    e.preventDefault();
 
-  const paciente = document.getElementById('nombrePaciente').value.trim();
-  const medico = selectMedicoTurno.value;
-  const especialidad = selectEspecialidadTurno.value;
-  const fecha = document.getElementById('fechaTurno').value;
-  const hora = document.getElementById('horaTurno').value;
+    const paciente = document.getElementById('nombrePaciente').value.trim();
+    const medico = selectMedicoTurno.value;
+    const especialidad = selectEspecialidadTurno.value;
+    const fecha = document.getElementById('fechaTurno').value;
+    const hora = document.getElementById('horaTurno').value;
 
-  // Validaciones del nombre del paciente
-  const palabras = paciente.split(' ').filter(p => p.length > 0);
-  const nombreValido = palabras.length >= 2 && palabras.every(p => /^[A-ZÁÉÍÓÚÑ]/.test(p)) && paciente.replace(/\s/g,'').length > 4;
-  if (!nombreValido) {
-    mostrarAlerta("⚠️ El nombre del paciente debe tener al menos dos palabras, comenzar con mayúscula y tener más de 4 letras.", alertaTurnosDiv);
-    return;
+    // Validaciones del nombre del paciente
+    const palabras = paciente.split(' ').filter(p => p.length > 0);
+    const nombreValido =
+      palabras.length >= 2 &&
+      palabras.every(p => /^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+$/.test(p)) &&
+      paciente.replace(/\s/g, '').length > 4;
+    if (!nombreValido) {
+      mostrarAlerta("⚠️ El nombre del paciente debe tener al menos dos palabras, comenzar con mayúscula y tener más de 4 letras.", alertaTurnosDiv);
+      return;
+    }
+
+    // Campos obligatorios
+    if (!medico || !especialidad || !fecha || !hora) {
+      mostrarAlerta("⚠️ Complete todos los campos.", alertaTurnosDiv);
+      return;
+    }
+
+    // Validación de fecha y hora
+    const [anio, mes, dia] = fecha.split('-').map(Number);
+    const [h, m] = hora.split(':').map(Number);
+    const fechaHora = new Date(anio, mes - 1, dia, h, m);
+    const ahora = new Date();
+
+    if (fechaHora < ahora) {
+      mostrarAlerta("⚠️ La fecha y hora del turno no pueden ser anteriores a la actual.", alertaTurnosDiv);
+      return;
+    }
+
+    if (h < 8 || h > 20) {
+      mostrarAlerta("⚠️ La hora del turno debe estar entre las 08:00 y las 20:00.", alertaTurnosDiv);
+      return;
+    }
+
+    if (fechaHora.getFullYear() > 2030) {
+      mostrarAlerta("⚠️ El año del turno no puede ser mayor a 2030.", alertaTurnosDiv);
+      return;
+    }
+
+    // Edición de turno
+    if (formTurno.dataset.editIndex !== undefined) {
+      const idx = formTurno.dataset.editIndex;
+      turnos[idx] = { paciente, medico, especialidad, fecha, hora };
+      mostrarAlerta("✏️ Turno actualizado correctamente.", alertaTurnosDiv);
+      delete formTurno.dataset.editIndex;
+      formTurno.removeEventListener('submit', actualizarTurnoListener);
+      formTurno.addEventListener('submit', agregarTurno);
+    } else {
+      turnos.push({ paciente, medico, especialidad, fecha, hora });
+      mostrarAlerta("✅ Turno registrado.", alertaTurnosDiv);
+    }
+
+    guardarTurnos();
+    mostrarTurnos();
+    formTurno.reset();
   }
 
-  // Campos obligatorios
-  if (!medico || !especialidad || !fecha || !hora) {
-    mostrarAlerta("⚠️ Complete todos los campos.", alertaTurnosDiv);
-    return;
-  }
-
-  // Validación de horario primero
-  const [h, m] = hora.split(':').map(Number);
-  if (h < 8 || h > 20) {
-    mostrarAlerta("⚠️ La hora del turno debe estar entre las 08:00 y las 20:00.", alertaTurnosDiv);
-    return;
-  }
-
-  // Validación de fecha y hora combinadas
-  const fechaHora = new Date(`${fecha}T${hora}`);
-  const ahora = new Date();
-  if (fechaHora < ahora) {
-    mostrarAlerta("⚠️ La fecha y hora del turno no pueden ser anteriores a la actual.", alertaTurnosDiv);
-    return;
-  }
-
-  if (fechaHora.getFullYear() > 2030) {
-    mostrarAlerta("⚠️ El año del turno no puede ser mayor a 2030.", alertaTurnosDiv);
-    return;
-  }
-
-  // Edición de turno
-  if (formTurno.dataset.editIndex !== undefined) {
-    const idx = formTurno.dataset.editIndex;
-    turnos[idx] = { paciente, medico, especialidad, fecha, hora };
-    mostrarAlerta("✏️ Turno actualizado correctamente.", alertaTurnosDiv);
-    delete formTurno.dataset.editIndex;
-    formTurno.removeEventListener('submit', actualizarTurnoListener);
-    formTurno.addEventListener('submit', agregarTurno);
-  } else {
-    turnos.push({ paciente, medico, especialidad, fecha, hora });
-    mostrarAlerta("✅ Turno registrado.", alertaTurnosDiv);
-  }
-
-  guardarTurnos();
-  mostrarTurnos();
-  formTurno.reset();
-}
-
-  // Listener de edición temporal
   let actualizarTurnoListener;
-
   window.editarTurno = function(idx) {
     const t = turnos[idx];
     document.getElementById('nombrePaciente').value = t.paciente;
@@ -344,7 +334,12 @@ function agregarEspecialidad(e) {
   }
 
   window.eliminarTurno = function(idx) {
-    if (confirm('¿Eliminar este turno?')) { turnos.splice(idx, 1); guardarTurnos(); mostrarTurnos(); mostrarAlerta('🗑️ Turno eliminado.', alertaTurnosDiv); }
+    if (confirm('¿Eliminar este turno?')) {
+      turnos.splice(idx, 1);
+      guardarTurnos();
+      mostrarTurnos();
+      mostrarAlerta('🗑️ Turno eliminado.', alertaTurnosDiv);
+    }
   }
 
   /*** AUTOCOMPLETE CRUZADO ***/
