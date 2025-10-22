@@ -46,29 +46,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Modo Oscuro
   const darkModeToggle = document.getElementById('darkModeToggle');
+  const darkModeToggleMobile = document.getElementById('darkModeToggleMobile');
   const darkModeIcon = document.getElementById('darkModeIcon');
+  const darkModeIconMobile = document.getElementById('darkModeIconMobile');
   const body = document.body;
 
-  if(darkModeToggle && darkModeIcon) {
-    const currentTheme = localStorage.getItem('theme');
-    if (currentTheme) {
-      body.setAttribute('data-bs-theme', currentTheme);
-      updateIcon(currentTheme);
-    }
-
-    darkModeToggle.addEventListener('click', function() {
-      const currentTheme = body.getAttribute('data-bs-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      
-      body.setAttribute('data-bs-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      updateIcon(newTheme);
-    });
+  // Función para cambiar el tema
+  function toggleTheme() {
+    const currentTheme = body.getAttribute('data-bs-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    body.setAttribute('data-bs-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateIcons(newTheme);
   }
 
-  function updateIcon(theme) {
-    if (!darkModeIcon) return;
-    darkModeIcon.className = theme === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
+  // Función para actualizar ambos iconos
+  function updateIcons(theme) {
+    const iconClass = theme === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
+    if (darkModeIcon) darkModeIcon.className = iconClass;
+    if (darkModeIconMobile) darkModeIconMobile.className = iconClass;
+  }
+
+  // Cargar tema guardado
+  const currentTheme = localStorage.getItem('theme');
+  if (currentTheme) {
+    body.setAttribute('data-bs-theme', currentTheme);
+    updateIcons(currentTheme);
+  }
+
+  // Event listeners para ambos botones
+  if(darkModeToggle) {
+    darkModeToggle.addEventListener('click', toggleTheme);
+  }
+  
+  if(darkModeToggleMobile) {
+    darkModeToggleMobile.addEventListener('click', toggleTheme);
   }
 
 });
