@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservar Turno</title>
+    <link rel="icon" type="image/png" href="./CSS/imagenes/IDW_S.A1-removebg-preview.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="CSS/styles.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="d-flex justify-content-between align-items-center w-100 px-3">
+            <a href="index.html">
+                <img src="./CSS/imagenes/IDW_S.A1-removebg-preview.png" alt="Logo Clinica IDW" style="height: 50px;">
+            </a>
+            <h1 class="mb-0 position-absolute start-50 translate-middle-x text-center">Reservar Turno</h1>
+            <div class="d-flex align-items-center gap-2">
+                <button id="darkModeToggle" class="btn btn-outline-light btn-sm" type="button"
+                    title="Cambiar modo oscuro">
+                    <i class="bi bi-moon-fill" id="darkModeIcon"></i>
+                </button>
+                <button class="navbar-toggler navbar-dark d-lg-none" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse d-lg-block w-100" id="navbarNav">
+            <nav class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3 py-2">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="institucional.html" class="nav-link">Institucional</a>
+                <a href="contacto.html" class="nav-link">Contacto</a>
+                <a href="altaMedicos.html" class="nav-link">Alta de Médicos</a>
+                <a href="reservarTurno.html" class="nav-link">Reservar Turno</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container-fluid mt-5 pt-5">
+        <section class="mb-5">
+            <h2 class="text-center mb-4">Reservar Turno</h2>
+            <p class="text-center">Completá el formulario para solicitar tu turno en la Clínica IDW.</p>
+
+            <form id="formReservarTurno" class="row g-3 justify-content-center">
+                <div class="col-md-6">
+                    <label for="nombrePaciente" class="form-label">Nombre y Apellido</label>
+                    <input type="text" id="nombrePaciente" class="form-control" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="medicoTurno" class="form-label">Médico</label>
+                    <select id="medicoTurno" class="form-select" required>
+                        <option value="">Seleccione...</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="fechaTurno" class="form-label">Fecha</label>
+                    <input type="date" id="fechaTurno" class="form-control" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="horaTurno" class="form-label">Hora</label>
+                    <select id="horaTurno" class="form-select" required>
+                        <option value="">Seleccione...</option>
+                    </select>
+                </div>
+
+                <div class="col-12 text-center mt-3">
+                    <button type="submit" class="btn btn-sm-primary">Solicitar Turno</button>
+                </div>
+
+                <div id="alertaReservar" class="text-center mt-3"></div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="text-center py-3">
+        <a href="https://www.instagram.com">Instagram</a> |
+        <a href="https://www.facebook.com">Facebook</a> |
+        <a href="https://www.x.com">X</a>
+        <p class="mb-0">Desarrollado por Grupo 19 &copy;</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/app.js"></script>
+    <script type="module" src="js/reservarTurno.js"></script>
+
+</body>
+
+</html>
