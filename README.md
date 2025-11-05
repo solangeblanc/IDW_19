@@ -1,4 +1,4 @@
-# Trabajo Final Integrador - Etapa 1  
+# Trabajo Final Integrador - Etapa 3  
 **Introducción al Desarrollo Web - 2° Cuatrimestre 2025**  
 **Tecnicatura Universitaria en Desarrollo Web (UNER)**  
 
@@ -14,17 +14,44 @@ IDW_19
 - Victoria Belén Mamberti
 - Leandro Plaza Puga 
 
-## Objetivos de esta etapa
+## Objetivos de la 1era etapa
 - Definir la estructura inicial del sitio web.  
 - Crear las páginas básicas solicitadas.  
 - Conectar el HTML con CSS.  
-- Establecer un estilo simple para la primera versión del sitio.  
+- Establecer un estilo simple para la primera versión del sitio. 
+
+## Objetivos de la 2da etapa
+- Adaptación del diseño mediante Bootstrap 5 (uso de clases y componentes)
+- Combinar con el diseño propio. 
+- Catálogo de profesionales.
+- Barra de navegación responsive - Versión colapsada para móvil.  
+- Diseño claro y consistente.
+- Implementación de modo oscuro
+
+## Objetivos de la 3era etapa
+- Implementar las funcionalidades de administración de Médicos, incluyendo listar, crear, visualizar, modificar y eliminar registros.
+- Inicializar el LocalStorage con datos predeterminados mediante una constante exportada desde un archivo JavaScript. 
+- Persistir la información de los profesionales utilizando la API LocalStorage de JavaScript.
+- Mostrar los datos en una tabla HTML, asegurando una visualización clara y ordenada.
+- Utilizar elementos de formulario adecuados según el tipo de dato (texto, correo, número, etc.).
+- (Opcional) Extender las mismas funcionalidades para Especialidades y Turnos.
+- Ver el tema del login para admin (no lo dice el pdf).
 
 ## Estructura del sitio  
-El sitio web en esta primera entrega cuenta con las siguientes páginas:  
+El trabajo cuenta con las siguientes páginas:  
 - `index.html`      Página de inicio o portada.  
-- `info.html`       Información institucional.  
-- `contacto.html`   Página de contacto.  
+- `institucional.html`   Información institucional.  
+- `contacto.html`   Página de contacto. 
+- `altaMedicos.html`   Página de Alta de Medicos. 
+- `login.html`   Página de login de admin. 
 
-Además, se incluye un archivo de estilos:  
-- `----.css`        Define el diseño básico del sitio. <!-- A definir aún -->
+Una carpeta js que contiene los siguientes archivo:
+- `altaMedicos.js` Gestiona todo lo relacionado con el formulario de alta de médicos.
+- `app.js` Contiene funcionalidades generales de la web, como el modo oscuro, los mensajes de alerta de los formularios de contacto, y la interacción con las flip cards.
+- `catalogoProfesionales.js` Genera dinámicamente las cards de los profesionales de la clínica en la sección correspondiente.
+- `data.js` Define y exporta los datos iniciales que se usan para inicializar localStorage.
+
+Además, se incluye un archivo de estilos dentro de la carpeta CSS:  
+- `styles.css`        Define el diseño básico del sitio.
+
+Y dentro de la carpeta CSS también se encuentra otra carpeta llamada "imagenes" que contiene imágenes que se utilizan en el proyecto. 

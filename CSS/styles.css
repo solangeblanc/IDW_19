@@ -1,0 +1,441 @@
+/* Reset y estilos generales */
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+
+/* Header */
+header {
+    position: fixed;      
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #007bb5;
+    color: #fff;
+    padding: 20px 0 10px 0;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6); 
+    z-index: 999;
+}
+
+header h1 {
+    margin: 0 0 10px 0;
+    font-size: 2em;
+    text-align: center;
+    display: none; /* Oculto por defecto (Mobile S y M) */
+}
+
+/* Navegación */
+nav .nav-link {
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+nav .nav-link:hover {
+    color: aqua;
+}
+
+/* Main */
+main {
+    flex: 1;             
+    width: 100%;         
+    max-width: 100%;     
+    margin: 0 auto;      
+    padding: 160px 30px 60px 30px; 
+}
+
+body.index main {
+    padding-top: 70px; 
+}
+
+/* Secciones */
+section {
+    margin-bottom: 20px;
+}
+
+section.my-5 h2 {
+    margin-bottom: 30px; 
+}
+
+section.my-5 {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+section h2 {
+    margin-top: 0;
+    margin-bottom: 18px;
+    color: #007665;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.card-img-container {
+    height: 250px; 
+    overflow: hidden;
+}
+
+.card-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Imágenes responsivas institucional */
+.img-institucional {
+    width: 800px;
+    height: 500px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+.carousel-item img {
+  height: 800px;         
+  object-fit: cover;     
+  width: 100%;          
+  border-radius: 8px;   
+}
+
+/* Cards interactivas */
+.card-text-fixed {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    font-size: 0.95em;
+}
+
+.card-img-bienestar {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.card-img-top {
+    height: 250px;
+    object-fit: contain;
+    object-position: center;
+    background-color: #fff;
+    
+}
+
+.collapse-content {
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    font-size: 0.9em;
+    background-color: #eef5f5;
+}
+
+.btn-sm-primary {
+    background-color: #007bb5;
+    border-color: #007bb5;
+    color: white;
+    font-size: 0.9em;
+}
+
+.btn-sm-primary:hover {
+    background-color: #005f8d;
+    border-color: #005f8d;
+    color: white;
+}
+
+/* Flip Cards*/
+
+.flip-card {
+  background-color: transparent;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  border-radius: 10px;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+.flip-card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+/* Form */
+.form-label-custom {
+    font-weight: bold;
+    color: #007bb5; 
+}
+
+.card h4 {
+    font-size: 1.2em; 
+    margin-bottom: 10px;
+}
+
+/* Alta de Medicos */
+
+.alta-medicos-section {
+    padding-top: 150px; 
+}
+
+/* Tarjeta del formulario */
+#altaMedicosContainer .card {
+    width: 100%;
+    border-radius: 20px;
+}
+
+/* Botón personalizado */
+
+#medicosRegistrados tr td,
+#medicosRegistrados tr th {
+    border: 1px solid #ccc; 
+    padding: 10px;
+    border-radius: 8px;
+}
+
+#medicosRegistrados tr {
+    background-color: #f8f9fa; 
+}
+
+#medicosRegistrados tr:hover {
+    background-color: #e0e0e0; 
+}
+
+#medicosRegistrados th {
+    background-color: #007bb5;
+    color: #fff;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 10px; 
+    width: 100%;
+}
+
+.alerta-mensaje {
+  background-color: #fff9c4; 
+  color: #333;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid #f0e68c;
+  display: inline-block;
+  margin: 10px auto;
+  font-weight: 500;
+}
+
+/* Footer */
+footer {
+    background: #007bb5;
+    padding: 18px 0;
+    text-align: center;
+    color: floralwhite;
+    margin-top: 40px;
+    font-size: 0.95em;
+    border-top: 1px solid #007665;
+}
+
+footer a {
+    color: floralwhite;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+
+@media (min-width: 425px) {
+    header h1 {
+        display: block;
+    }
+}
+
+
+@media (min-width: 768px) {
+    /* Aumentar el tamaño del logo en pantallas medianas y grandes */
+    .navbar-brand img {
+        height: 80px ;
+    }
+    
+    /* Ajustar padding para tablets y desktop con header de dos líneas */
+    main {
+        padding-top: 180px ;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        padding-top: 140px; /* Ajustado para móviles con header colapsado */
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding-top: 130px; /* Ajustado para móviles pequeños */
+        padding-bottom: 30px; 
+    }
+}
+
+/* ========================================
+   ESTILOS PARA MODO OSCURO
+   Material Design Dark Theme Palette
+   ======================================== */
+
+/* Configuración general del body en modo oscuro */
+[data-bs-theme="dark"] {
+    background-color: #0d1117;
+    color: #e6edf3;
+}
+
+/* Main en modo oscuro */
+[data-bs-theme="dark"] main {
+    background-color: #0d1117;
+}
+
+/* Header en modo oscuro */
+[data-bs-theme="dark"] header {
+    background-color: #161b22;
+    color: #f0f6fc;
+}
+
+[data-bs-theme="dark"] header h1 {
+    color: #f0f6fc;
+}
+
+[data-bs-theme="dark"] .nav-link {
+    color: #f0f6fc;
+}
+
+[data-bs-theme="dark"] .nav-link:hover {
+    color: #58a6ff;
+}
+
+/* Footer en modo oscuro */
+[data-bs-theme="dark"] footer {
+    background-color: #161b22;
+    color: #f0f6fc;
+}
+
+[data-bs-theme="dark"] footer a {
+    color: #238675;
+}
+
+[data-bs-theme="dark"] footer a:hover {
+    color: #289885;
+}
+
+/* Cards en modo oscuro */
+[data-bs-theme="dark"] .card {
+    background-color: #21262d;
+    border-color: #30363d;
+    color: #e6edf3;
+}
+
+
+/* Secciones principales en modo oscuro */
+[data-bs-theme="dark"] section.my-5 {
+    background-color: #21262d;
+    color: #e6edf3;
+}
+
+/* Botones personalizados en modo oscuro */
+[data-bs-theme="dark"] .btn-sm-primary {
+    background-color: #238636;
+    border-color: #238636;  
+}
+
+[data-bs-theme="dark"] .btn-sm-primary:hover {
+    background-color: #2ea043;
+    border-color: #2ea043;
+}
+
+/* Contenido colapsable en modo oscuro */
+[data-bs-theme="dark"] .collapse-content {
+    background-color: #30363d;
+    color: #e6edf3;
+}
+
+/* Formularios en modo oscuro */
+[data-bs-theme="dark"] .form-control {
+    background-color: #0d1117;
+    border-color: #30363d;
+    color: #e6edf3;
+}
+
+[data-bs-theme="dark"] .form-control:focus {
+    background-color: #0d1117;
+    border-color: #3b597c;
+    color: #e6edf3;
+    box-shadow: 0 0 0 0.2rem rgba(88, 166, 255, 0.25);
+}
+
+[data-bs-theme="dark"] .form-label-custom {
+    color: #ffffff;
+}
+
+/* Tabla en modo oscuro*/
+
+[data-bs-theme="dark"] .dark-header th {
+    background-color: #207935;
+    color: #f0f6fc;
+}
+
+/* Flip cards institucionales - modo claro */
+.institucional-card {
+    background-color: #007bb5; /* azul */
+    color: white;
+}
+
+/* Flip cards institucionales - modo oscuro */
+[data-bs-theme="dark"] .institucional-card {
+    background-color: #238636; /* verde */
+    color: white;
+}
+
+/* Flip card back en modo claro */
+.flip-card-back {
+    background-color: #eaeaea;
+    color: #333;
+}
+
+/* Flip card back en modo oscuro */
+[data-bs-theme="dark"] .flip-card-back {
+    background-color: #555e63;
+    color: white;
+}

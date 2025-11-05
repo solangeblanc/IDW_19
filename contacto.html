@@ -1,40 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clínica IDW - Contacto</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto</title>
+
+  <!-- Icono de navegador (Favicon) -->
+  <link rel="icon" type="image/png" href="./CSS/imagenes/IDW_S.A1-removebg-preview.png">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+  <!-- CSS personalizado -->
+  <link rel="stylesheet" href="CSS/styles.css">
 </head>
 <body>
+
 <header>
-    <h1>Clínica IDW</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="info.html">Información</a></li>
-        <li><a href="contacto.html" class="active">Contacto</a></li>
-      </ul>
-    </nav>
-  </header>
+  <div class="d-flex justify-content-between align-items-center w-100 px-3">
+    <a href="index.html">
+      <img src="./CSS/imagenes/IDW_S.A1-removebg-preview.png" alt="Logo Clinica IDW" style="height: 50px;">
+    </a>
+    <h1 class="mb-0 position-absolute start-50 translate-middle-x text-center">Bienvenido a la Clinica IDW</h1>
+    <div class="d-flex align-items-center gap-2">
+      <!-- Botón de modo oscuro -->
+      <button id="darkModeToggle" class="btn btn-outline-light btn-sm" type="button" title="Cambiar modo oscuro">
+        <i class="bi bi-moon-fill" id="darkModeIcon"></i>
+      </button>
+      <button class="navbar-toggler navbar-dark d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </div>
+  <div class="collapse navbar-collapse d-lg-block w-100" id="navbarNav">
+    <nav class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3 py-2">
+      <a href="index.html" class="nav-link">Inicio</a>
+      <a href="institucional.html" class="nav-link">Institucional</a>
+      <a href="contacto.html" class="nav-link">Contacto</a>
+      <a href="altaMedicos.html" class="nav-link">Alta de Médicos</a>
+  </nav>
+  </div>
+</header>
 
-  <main>
-    <h2>Contacto</h2>
-    <form>
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" name="nombre">
+<main class="container-fluid">
 
-      <label for="email">Correo:</label>
-      <input type="email" id="email" name="email">
+  <!-- Sección Contacto -->
+  <section class="mb-5">
+    <h2 class="text-center">Contacto</h2>
+    <p class="text-center mb-4">Envíanos tu consulta, comentario y/o sugerencia completando el siguiente formulario. Estamos aquí para ayudarte y responder todas tus inquietudes de manera rápida y eficaz.</p>
 
-      <label for="mensaje">Mensaje:</label>
-      <textarea id="mensaje" name="mensaje"></textarea>
+    <!-- Formulario de contacto -->
+    <form id="formContacto">
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-12">
+        <div class="card p-4 shadow-sm">
+          <form>
+            <div class="mb-3">
+              <label for="nombre" class="form-label form-label-custom">Nombre y Apellido:</label>
+              <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ej: Juan Pérez">
+            </div>
+            <div class="mb-3">
+              <label for="telefono" class="form-label form-label-custom">Teléfono:</label>
+              <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="+54 11 1234 5678">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label form-label-custom">Correo:</label>
+              <input type="email" id="email" name="email" class="form-control" placeholder="ejemplo@correo.com">
+            </div>
+            <div class="mb-3">
+              <label for="mensaje" class="form-label form-label-custom">Mensaje:</label>
+              <textarea id="mensaje" name="mensaje" rows="4" class="form-control" placeholder="Escribe tu mensaje aquí..."></textarea>
+            </div>
 
-      <button type="submit">Enviar</button>
-    </form>
-  </main>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter">
+              <label class="form-check-label" for="newsletter">
+                Deseo suscribirme al Newsletter
+              </label>
+            </div>
 
-  <footer>
-    <p>Clínica IDW - 2025</p>
-  </footer>
+            <div id="formAlert" class="alert alert-success d-none" role="alert">
+              ¡Formulario enviado correctamente!
+            </div>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-sm-primary">Enviar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  </form>
+
+
+  <section class="text-center mb-4">
+  <div class="container">
+    <h2 class="mb-3">Cómo encontrarnos</h2>
+    <p>Contactate con nosotros y visita nuestra clínica en persona o a través de los medios de comunicación disponibles. Estamos para ayudarte y responder todas tus consultas.</p>
+  </div>
+</section>
+
+<section class="my-5">
+  <div class="container">
+  <div class="row g-4 align-items-start">
+      <div class="col-md-6">
+        <div class="card p-3 h-100 shadow-sm">
+          <h4 class="text-start">Información de contacto</h4>
+          <p><b>Teléfono:</b> +54 11 1234 5678</p>
+          <p><b>Dirección:</b> Av. 123, Ciudad de Buenos Aires, Argentina.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card p-3 h-100 shadow-sm">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.774795537846!2d-58.381559!3d-34.603684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccac7!2sObelisco!5e0!3m2!1ses!2sar!4v0000000000"
+            width="100%" 
+            height="300" 
+            style="border:0;" 
+            allowfullscreen 
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="text-center py-3">
+  <a href="https://www.instagram.com">Instagram</a> |
+  <a href="https://www.facebook.com">Facebook</a> |
+  <a href="https://www.x.com">X</a>
+  <p class="mb-0">Desarrollado por Grupo 19 &copy;</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Alert con JS -->
+<script src="js/app.js"></script>
+
 </body>
 </html>
