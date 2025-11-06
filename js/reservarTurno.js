@@ -79,7 +79,7 @@ form.addEventListener("submit", e => {
     return;
   }
 
-  guardarTurno({ nombre, medico, especialidad, fecha, hora });
+  guardarTurno({ paciente: nombre, medico, especialidad, fecha, hora });
   alerta.textContent = "✅ Turno reservado con éxito.";
   form.reset();
 });
