@@ -157,53 +157,82 @@
   </section>
 
   <!-- Gestión de Turnos -->
-<section class="mt-5">
-  <h2 class="text-center mb-3">Gestión de Turnos</h2>
-
-  <form id="formAltaTurno" class="mb-5">
-    <div class="row g-3">
-      <div class="col-md-4">
-        <label for="nombrePaciente" class="form-label">Nombre del Paciente</label>
-        <input type="text" id="nombrePaciente" class="form-control" required>
-      </div>
-
-      <div class="col-md-4">
-        <label for="medicoTurno" class="form-label">Médico</label>
-        <select id="medicoTurno" class="form-select" required>
-          <option value="">Seleccione...</option>
-        </select>
-      </div>
-
-      <div class="col-md-4">
-        <label for="especialidadTurno" class="form-label">Especialidad</label>
-        <select id="especialidadTurno" class="form-select" required>
-          <option value="">Seleccione...</option>
-        </select>
-      </div>
-
-      <div class="col-md-4">
-        <label for="fechaTurno" class="form-label">Fecha</label>
-        <input type="date" id="fechaTurno" class="form-control" required>
-      </div>
-
-      <div class="col-md-4">
-        <label for="horaTurno" class="form-label">Horario de Atención</label>
-        <select id="horaTurno" class="form-control" required>
-          <option value="">Seleccione...</option>
-          <!-- Opciones generadas por JS -->
-        </select>
-      </div>
+<form id="formAltaTurno" class="mb-5">
+  <div class="row g-3">
+    <div class="col-md-4">
+      <label for="nombrePaciente" class="form-label">Nombre del Paciente</label>
+      <input type="text" id="nombrePaciente" class="form-control" required>
     </div>
 
-    <div class="mt-3 text-center">
-      <button type="submit" class="btn btn-sm-primary">Registrar Turno</button>
+    <div class="col-md-4">
+      <label for="medicoTurno" class="form-label">Médico</label>
+      <select id="medicoTurno" class="form-select" required>
+        <option value="">Seleccione...</option>
+      </select>
     </div>
-    <div id="alertaTurnos" class="text-center mt-2"></div> 
-  </form>
 
-  <h2 class="mb-4">Turnos Registrados</h2>
-  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <label for="especialidadTurno" class="form-label">Especialidad</label>
+      <select id="especialidadTurno" class="form-select" required>
+        <option value="">Seleccione...</option>
+      </select>
+    </div>
+
+    <div class="col-md-4">
+      <label for="obraSocialTurno" class="form-label">Obra Social</label>
+      <select id="obraSocialTurno" class="form-select" required>
+        <option value="">Seleccione...</option>
+        <option>OSDE</option>
+        <option>Swiss Medical</option>
+        <option>Galeno</option>
+        <option>PAMI</option>
+        <option>IOMA</option>
+        <option>Medifé</option>
+        <option>Omint</option>
+        <option>Accord Salud</option>
+        <option>UP</option>
+        <option>Particular</option>
+      </select>
+    </div>
+
+    <div class="col-md-4">
+      <label for="fechaTurno" class="form-label">Fecha</label>
+      <input type="date" id="fechaTurno" class="form-control" required>
+    </div>
+
+    <div class="col-md-4">
+      <label for="horaTurno" class="form-label">Horario de Atención</label>
+      <select id="horaTurno" class="form-control" required>
+        <option value="">Seleccione...</option>
+        <!-- Opciones generadas por JS -->
+      </select>
+    </div>
+
+    <div class="col-md-4">
+      <label for="valorConsultaTurno" class="form-label">Valor de consulta ($)</label>
+      <input type="number" id="valorConsultaTurno" class="form-control" readonly>
+    </div>
+
+    <div class="col-md-4">
+      <label for="porcentajeDescuentoTurno" class="form-label">Descuento obra social (%)</label>
+      <input type="number" id="porcentajeDescuentoTurno" class="form-control" readonly>
+    </div>
+
+    <div class="col-md-4">
+      <label for="valorFinalTurno" class="form-label">Total a pagar ($)</label>
+      <input type="number" id="valorFinalTurno" class="form-control" readonly>
+    </div>
+  </div>
+
+  <div class="mt-3 text-center">
+    <button type="submit" class="btn btn-sm-primary">Registrar Turno</button>
+  </div>
+  <div id="alertaTurnos" class="text-center mt-2"></div>
+</form>
+
+  <section class="row justify-content-center mt-5">
     <div class="col-md-10">
+      <h2 class="text-center mb-3">Turnos Registrados</h2>
       <div class="table-responsive">
         <table class="table table-striped align-middle text-center mx-auto">
           <thead>
@@ -211,8 +240,10 @@
               <th>Paciente</th>
               <th>Médico</th>
               <th>Especialidad</th>
+              <th>Obra Social</th>
               <th>Fecha</th>
               <th>Hora</th>
+              <th>Precio</th>
               <th>Acciones</th>
             </tr>
           </thead>
