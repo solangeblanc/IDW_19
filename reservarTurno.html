@@ -91,6 +91,17 @@
     <script type="module" src="js/app.js"></script>
     <script type="module" src="js/reservarTurno.js"></script>
 
+<!-- Verificación: reservarTurno requiere usuario logueado -->
+<script>
+    (function(){
+        const logged = !!(sessionStorage.getItem('username') || localStorage.getItem('userRole'));
+        if (!logged) {
+            // si no está logueado, redirigir al índice (donde está el login)
+            window.location.href = 'index.html';
+        }
+    })();
+</script>
+
 </body>
 
 </html>

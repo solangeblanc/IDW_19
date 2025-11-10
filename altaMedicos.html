@@ -39,8 +39,12 @@
       
       <script>
         function logout() {
-          localStorage.removeItem("logueado");
-          window.location.href = "login.html";
+          // limpiar session/local storage relacionado a autenticación
+          sessionStorage.clear();
+          localStorage.removeItem('logueado');
+          localStorage.removeItem('userRole');
+          // redirigir al índice donde está el login
+          window.location.href = 'index.html';
         }
       </script>
 
@@ -272,15 +276,18 @@
 <!-- Verificación de login -->
 <script>
   if (localStorage.getItem("logueado") !== "true") {
-    window.location.href = "login.html";
+    // redirigir al índice donde está el acceso/login
+    window.location.href = "index.html";
   }
 </script>
 
 <!-- Función logout -->
 <script>
   function logout() {
-    localStorage.removeItem("logueado");
-    window.location.href = "index.html";
+    sessionStorage.clear();
+    localStorage.removeItem('logueado');
+    localStorage.removeItem('userRole');
+    window.location.href = 'index.html';
   }
 </script>
 
