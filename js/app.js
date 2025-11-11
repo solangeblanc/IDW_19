@@ -107,9 +107,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (navLoginBtns && navLoginBtns.length){
       navLoginBtns.forEach(navLoginBtn => {
         if (logged){
-          navLoginBtn.textContent = 'Hola, ' + (sessionStorage.getItem('username') || 'Usuario');
+          // mostrar acción de logout en lugar de saludo
+          navLoginBtn.textContent = 'Cerrar sesión';
           navLoginBtn.classList.remove('btn-outline-light');
-          navLoginBtn.classList.add('btn-success');
+          // usar estilo de peligro suave para indicar acción de cierre
+          navLoginBtn.classList.remove('btn-success');
+          navLoginBtn.classList.add('btn-outline-danger');
           navLoginBtn.removeAttribute('href');
           navLoginBtn.onclick = function(){
             sessionStorage.clear();
@@ -119,7 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
           };
         } else {
           navLoginBtn.textContent = 'Iniciar Sesión';
-          navLoginBtn.classList.remove('btn-success');
+          // restablecer estilo de login
+          navLoginBtn.classList.remove('btn-outline-danger');
           navLoginBtn.classList.add('btn-outline-light');
           navLoginBtn.setAttribute('href', 'login.html');
           navLoginBtn.onclick = null;
