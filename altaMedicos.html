@@ -15,6 +15,10 @@
 
   <!-- CSS personalizado -->
   <link rel="stylesheet" href="CSS/styles.css">
+  
+  <!-- Verifica Login --> <script src="./JS/verificarLogin.js"></script>
+
+
 </head>
 <body>
 
@@ -293,13 +297,6 @@
 <script type="module" src="js/altaMedicos.js"></script>
 <script src="js/app.js"></script>
 
-<!-- Verificación de login -->
-  <script>
-  if (localStorage.getItem("logueado") !== "true") {
-    // redirigir al índice donde está el acceso/login
-    window.location.href = "index.html";
-  }
-</script>
 
 <!-- Nota: el logout/login se maneja desde `js/app.js` mediante el elemento #navLoginBtn -->
 

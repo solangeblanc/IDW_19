@@ -63,7 +63,7 @@ Una carpeta js que contiene los siguientes archivo:
 - `login.js` Define los usuarios predefinidos (por ejemplo, administrador y visitante) y controla el inicio de sesión comparando las credenciales ingresadas con los datos almacenados.
 - `reservarTurno.js` Toma los datos del médico, paciente, obra social y especialidad, calcula el valor final de la consulta (aplicando descuentos si corresponde) y guarda la reserva en localStorage.
 - `reservarTurnoSinLogin.js` Gestiona la lógica de la reserva de turnos sin autenticación.
-
+- `verificarLogin.js` Te redirige al login con sessionstorage si no estás logueado en páginas que necesitan credenciales como "altaMedicos.html" y "reservarTurno.html".
 
 Además, se incluye un archivo de estilos dentro de la carpeta CSS:  
 - `styles.css`        Define el diseño básico del sitio.
