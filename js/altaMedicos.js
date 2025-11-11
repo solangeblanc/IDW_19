@@ -33,8 +33,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let especialidades = [...new Set(medicos.map(m => m.especialidad))];
   let turnos = JSON.parse(localStorage.getItem('turnos')) || [];
-  let obrasSociales = JSON.parse(localStorage.getItem('obrasSociales')) || [...OBRAS_SOCIALES];
-  localStorage.setItem('obrasSociales', JSON.stringify(obrasSociales));
+  let obrasSociales = OBRAS_SOCIALES.map(os => ({
+  id: os.id,
+  nombre: os.nombre,
+  descripcion: os.descripcion,
+  porcentaje: DESCUENTOS_OS[os.nombre] || 0  // <- asignamos el % desde tu objeto
+}));
+localStorage.setItem('obrasSociales', JSON.stringify(obrasSociales));
+
+  const obrasStorage = JSON.parse(localStorage.getItem('obrasSociales'));
+  if (obrasStorage && obrasStorage.length > 0) {
+    obrasSociales = obrasStorage;
+  } else {
+    obrasSociales = OBRAS_SOCIALES.map((os, idx) => ({
+      id: os.id || idx + 1,
+      nombre: os.nombre,
+      porcentaje: os.porcentaje || 0
+    }));
+    localStorage.setItem('obrasSociales', JSON.stringify(obrasSociales));
+  }
 
   // Variable para edición de especialidades
   let editEspecialidadId = null;
@@ -91,6 +108,119 @@ document.addEventListener('DOMContentLoaded', () => {
       select.appendChild(option);
     });
   }
+
+  /*** CRUD OBRAS SOCIALES ***/
+function mostrarObrasSociales() {
+  const listaObrasUl = document.getElementById('listaObrasSociales');
+  listaObrasUl.innerHTML = '';
+
+  obrasSociales
+    .slice()
+    .sort((a, b) => a.nombre.localeCompare(b.nombre))
+    .forEach(os => {
+      const fila = document.createElement('tr');
+
+      // Columna ID
+      const tdId = document.createElement('td');
+      tdId.textContent = os.id;
+
+      // Columna nombre
+      const tdNombre = document.createElement('td');
+      tdNombre.textContent = os.nombre;
+
+      // Columna porcentaje de descuento
+      const tdPorcentaje = document.createElement('td');
+      tdPorcentaje.textContent = os.porcentaje || 0;
+
+      // Columna acciones
+      const tdAcciones = document.createElement('td');
+
+      const btnEditar = document.createElement('button');
+      btnEditar.className = 'btn btn-sm btn-warning me-2';
+      btnEditar.textContent = 'Editar';
+      btnEditar.addEventListener('click', () => {
+        document.getElementById('nuevaObraSocial').value = os.nombre;
+        document.getElementById('porcentajeObraSocial').value = os.porcentaje || 0;
+        editObraSocialId = os.id;
+      });
+
+      const btnBorrar = document.createElement('button');
+      btnBorrar.className = 'btn btn-sm btn-danger';
+      btnBorrar.textContent = 'Eliminar';
+      btnBorrar.addEventListener('click', () => {
+        if (confirm(`¿Eliminar obra social "${os.nombre}"?`)) {
+          obrasSociales = obrasSociales.filter(o => o.id !== os.id);
+          localStorage.setItem('obrasSociales', JSON.stringify(obrasSociales));
+          mostrarObrasSociales();
+          mostrarAlerta('🗑️ Obra social eliminada.', alertaEspecialidadesDiv);
+          actualizarSelectsTurnos();
+        }
+      });
+
+      tdAcciones.appendChild(btnEditar);
+      tdAcciones.appendChild(btnBorrar);
+
+      fila.appendChild(tdId);
+      fila.appendChild(tdNombre);
+      fila.appendChild(tdPorcentaje);
+      fila.appendChild(tdAcciones);
+      listaObrasUl.appendChild(fila);
+    });
+
+  actualizarSelectsTurnos();
+}
+
+function agregarObraSocial(e) {
+  e.preventDefault();
+  const nombre = document.getElementById('nuevaObraSocial').value.trim();
+  const porcentaje = parseFloat(document.getElementById('porcentajeObraSocial').value) || 0;
+
+  if (!nombre || nombre.length < 3 || nombre[0] !== nombre[0].toUpperCase()) {
+    mostrarAlerta("⚠️ El nombre debe empezar con mayúscula y tener al menos 3 letras.", alertaEspecialidadesDiv);
+    return;
+  }
+
+  if (editObraSocialId !== null) {
+    // Modo edición
+    const idx = obrasSociales.findIndex(o => o.id === editObraSocialId);
+    if (idx !== -1) {
+      // Evitar duplicado
+      if (obrasSociales.some((o, i) => i !== idx && o.nombre === nombre)) {
+        mostrarAlerta("⚠️ Ya existe otra obra social con ese nombre.", alertaEspecialidadesDiv);
+        return;
+      }
+      obrasSociales[idx].nombre = nombre;
+      obrasSociales[idx].porcentaje = porcentaje;
+      mostrarAlerta("✏️ Obra social actualizada.", alertaEspecialidadesDiv);
+    }
+    editObraSocialId = null;
+  } else {
+    // Modo crear
+    if (obrasSociales.some(o => o.nombre === nombre)) {
+      mostrarAlerta("⚠️ Esta obra social ya está en la lista.", alertaEspecialidadesDiv);
+      return;
+    }
+    const maxId = obrasSociales.length ? Math.max(...obrasSociales.map(o => o.id)) : 0;
+    obrasSociales.push({ id: maxId + 1, nombre, porcentaje });
+    mostrarAlerta("✅ Obra social agregada.", alertaEspecialidadesDiv);
+  }
+
+  localStorage.setItem('obrasSociales', JSON.stringify(obrasSociales));
+  document.getElementById('nuevaObraSocial').value = '';
+  document.getElementById('porcentajeObraSocial').value = '';
+  mostrarObrasSociales();
+  actualizarSelectsTurnos();
+}
+
+// Variable global para edición
+let editObraSocialId = null;
+
+// Event listener
+const formObraSocial = document.getElementById('formObraSocial');
+formObraSocial.addEventListener('submit', agregarObraSocial);
+
+// Inicialización
+mostrarObrasSociales();
 
   /*** CRUD MÉDICOS ***/
   function mostrarMedicos() {
@@ -460,27 +590,38 @@ document.addEventListener('DOMContentLoaded', () => {
     return null;
   }
 
-  function mostrarTurnos() {
-    if (!turnos.length) {
+    function mostrarTurnos() {
+    // Traer turnos de pacientes
+    const turnosPublicos = JSON.parse(localStorage.getItem('turnosPublicos')) || [];
+
+    // Combinar ambos arrays
+    const todosLosTurnos = [
+      ...turnos.map(t => ({ ...t, idVisual: t.id + "t" })), // internos
+      ...turnosPublicos.map(t => ({ ...t, idVisual: t.id + "r" })) // reservas
+    ];
+
+    if (!todosLosTurnos.length) {
       tbodyTurnos.innerHTML = `<tr><td colspan="9" class="text-center">No hay turnos registrados</td></tr>`;
       return;
     }
 
     tbodyTurnos.innerHTML = '';
-    turnos.forEach((t, i) => {
+    todosLosTurnos.forEach((t, i) => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td>${t.id}</td>
-        <td>${t.paciente}</td>
+        <td>${t.idVisual}</td>
+        <td>${t.paciente || "-"}</td>
         <td>${t.medico}</td>
         <td>${t.especialidad}</td>
-        <td>${t.obraSocial || ''}</td>
+        <td>${t.obraSocial || "-"}</td>
         <td>${t.fecha}</td>
         <td>${t.hora}</td>
-        <td>$${t.total || ''}</td>
+        <td>$${t.total || ""}</td>
         <td>
-          <button class="btn btn-warning btn-sm me-2" onclick="editarTurno(${i})">Editar</button>
-          <button class="btn btn-danger btn-sm" onclick="eliminarTurno(${i})">Eliminar</button>
+          ${t.idVisual.endsWith('t') ? `
+            <button class="btn btn-warning btn-sm me-2" onclick="editarTurno(${i})">Editar</button>
+            <button class="btn btn-danger btn-sm" onclick="eliminarTurno(${i})">Eliminar</button>
+          ` : ''}
         </td>
       `;
       tbodyTurnos.appendChild(tr);

@@ -1,186 +1,257 @@
-import { MEDICOS_INICIALES } from './data.js';
-import { VALORES_CONSULTA, DESCUENTOS_OS } from './dataValores.js';
+import { MEDICOS_INICIALES } from "./data.js";
+import { OBRAS_SOCIALES, VALORES_CONSULTA, DESCUENTOS_OS } from "./dataValores.js";
 
-document.addEventListener('DOMContentLoaded', () => {
-  /*** ELEMENTOS DOM ***/
-  const formTurno = document.getElementById('formTurnoPublico');
-  const selectMedico = document.getElementById('medicoTurno');
-  const selectEspecialidad = document.getElementById('especialidadTurno');
-  const selectObraSocial = document.getElementById('obraSocialTurno');
-  const selectHora = document.getElementById('horaTurno');
-  const inputValor = document.getElementById('valorConsultaTurno');
-  const inputDesc = document.getElementById('porcentajeDescuentoTurno');
-  const inputTotal = document.getElementById('valorFinalTurno');
-  const alertaDiv = document.getElementById('alertaTurnoPublico');
-  const tbodyTurnos = document.getElementById('turnosPublicos');
+document.addEventListener("DOMContentLoaded", () => {
+  const selectEspecialidad = document.getElementById("especialidad");
+  const selectMedico = document.getElementById("medico");
+  const selectObraSocial = document.getElementById("obraSocial");
+  const selectHora = document.getElementById("hora");
+  const inputValorConsulta = document.getElementById("valorConsulta");
+  const inputPorcentaje = document.getElementById("porcentaje");
+  const inputValorFinal = document.getElementById("valorFinal");
+  const form = document.getElementById("formReservaTurno");
+  const mensajeDiv = document.getElementById("mensajeReserva");
+  const tablaTurnos = document.getElementById("tablaTurnos");
 
   /*** DATOS BASE ***/
-  let medicos = JSON.parse(localStorage.getItem('medicos')) || MEDICOS_INICIALES;
-  let especialidades = [...new Set(medicos.map(m => m.especialidad))];
-  let turnos = JSON.parse(localStorage.getItem('turnosPublicos')) || [];
+  const medicosGuardados = JSON.parse(localStorage.getItem("medicos")) || [];
+  const todosLosMedicos = [...MEDICOS_INICIALES, ...medicosGuardados];
 
-  /*** FUNCIONES AUXILIARES ***/
-  const normalize = str =>
-    str ? str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim() : "";
-
-  const guardarTurnos = () => localStorage.setItem('turnosPublicos', JSON.stringify(turnos));
-
-  const mostrarAlerta = msg => {
-    alertaDiv.innerHTML = `<div class="alerta-mensaje">${msg}</div>`;
-    setTimeout(() => alertaDiv.innerHTML = "", 4000);
-  };
-
-  /*** HORARIOS ***/
-  function generarHorarios() {
-    selectHora.innerHTML = '<option value="">Seleccione...</option>';
-    for (let h = 8; h < 20; h++) {
-      ['00', '30'].forEach(m => {
-        const opt = document.createElement('option');
-        opt.value = `${String(h).padStart(2,'0')}:${m}`;
-        opt.textContent = opt.value;
-        selectHora.appendChild(opt);
-      });
+  /*** MÉDICOS ÚNICOS ***/
+  const medicosUnicosMap = new Map();
+  todosLosMedicos.forEach(m => {
+    if (!medicosUnicosMap.has(m.nombre)) {
+      medicosUnicosMap.set(m.nombre, m);
     }
-  }
+  });
+  const medicosUnicos = Array.from(medicosUnicosMap.values());
 
-  /*** SELECTS MÉDICO Y ESPECIALIDAD ***/
+  /*** RELLENAR SELECTS INICIALES ***/
   function actualizarSelects() {
-    selectMedico.innerHTML = '<option value="">Seleccione...</option>';
-    medicos.forEach(m => {
-      const opt = document.createElement('option');
-      opt.value = m.nombre;
-      opt.textContent = `${m.nombre} (${m.especialidad})`;
-      selectMedico.appendChild(opt);
-    });
-
-    selectEspecialidad.innerHTML = '<option value="">Seleccione...</option>';
-    especialidades.forEach(e => {
-      const opt = document.createElement('option');
+    // Especialidades únicas
+    const especialidadesUnicas = [...new Set(medicosUnicos.map(m => m.especialidad))];
+    selectEspecialidad.innerHTML = '<option value="">Seleccione especialidad...</option>';
+    especialidadesUnicas.forEach(e => {
+      const opt = document.createElement("option");
       opt.value = e;
       opt.textContent = e;
       selectEspecialidad.appendChild(opt);
     });
+
+    // Médicos únicos
+    selectMedico.innerHTML = '<option value="">Seleccione médico...</option>';
+    medicosUnicos.forEach(m => {
+      const opt = document.createElement("option");
+      opt.value = m.nombre;
+      opt.textContent = m.nombre;
+      selectMedico.appendChild(opt);
+    });
   }
 
-  function cargarObrasSociales(medico) {
-    selectObraSocial.innerHTML = '<option value="">Seleccione...</option>';
-    if (!medico) return;
-    const med = medicos.find(m => m.nombre === medico);
-    if (med && med.obrasSociales) {
-      const obras = Array.isArray(med.obrasSociales) ? med.obrasSociales : med.obrasSociales.split(',').map(o=>o.trim());
-      obras.forEach(os => {
-        const opt = document.createElement('option');
-        opt.value = os;
-        opt.textContent = os;
-        selectObraSocial.appendChild(opt);
+  actualizarSelects();
+
+  /*** GENERAR HORARIOS ***/
+  function generarHorarios() {
+    selectHora.innerHTML = '<option value="">Seleccione hora</option>';
+    for (let h = 8; h < 20; h++) {
+      ["00", "30"].forEach(min => {
+        const horaStr = `${h.toString().padStart(2, "0")}:${min}`;
+        const opt = document.createElement("option");
+        opt.value = horaStr;
+        opt.textContent = horaStr;
+        selectHora.appendChild(opt);
       });
     }
   }
+  generarHorarios();
 
-  /*** CALCULAR TOTAL ***/
-  function calcularTotal() {
+  /*** RELACIONES MÉDICO ↔ ESPECIALIDAD ***/
+  selectMedico.addEventListener("change", () => {
+    const medicoSel = medicosUnicos.find(m => m.nombre === selectMedico.value);
+    if (medicoSel) {
+      selectEspecialidad.value = medicoSel.especialidad;
+    } else {
+      selectEspecialidad.value = "";
+    }
+    actualizarObrasSociales();
+    actualizarValorConsulta();
+  });
+
+  selectEspecialidad.addEventListener("change", () => {
+    const med = medicosUnicos.find(m => m.especialidad === selectEspecialidad.value);
+    selectMedico.value = med ? med.nombre : "";
+    actualizarObrasSociales();
+    actualizarValorConsulta();
+  });
+
+  selectObraSocial.addEventListener("change", actualizarDescuentoYTotal);
+
+  /*** FUNCIONES AUXILIARES ***/
+  function actualizarValorConsulta() {
+    const esp = selectEspecialidad.value;
+    const valor = VALORES_CONSULTA[esp] || 0;
+    inputValorConsulta.value = valor;
+    actualizarDescuentoYTotal();
+  }
+
+  function actualizarObrasSociales() {
+    selectObraSocial.innerHTML = '<option value="">Seleccione...</option>';
+    const medicoSel = medicosUnicos.find(m => m.nombre === selectMedico.value);
+    if (!medicoSel || !medicoSel.obrasSociales) return;
+
+    let lista = medicoSel.obrasSociales;
+    if (typeof lista === 'string') {
+      lista = lista.split(',').map(s => s.trim()).filter(Boolean);
+    } else if (!Array.isArray(lista)) {
+      lista = [];
+    }
+
+    lista.forEach(nombreOS => {
+      const os = OBRAS_SOCIALES.find(o => o.nombre === nombreOS) ||
+                 OBRAS_SOCIALES.find(o => o.nombre && o.nombre.toLowerCase().trim() === String(nombreOS).toLowerCase().trim());
+      if (os) {
+        const opt = document.createElement("option");
+        opt.value = os.nombre;
+        opt.textContent = os.nombre;
+        selectObraSocial.appendChild(opt);
+      }
+    });
+  }
+
+  function actualizarDescuentoYTotal() {
+    const obra = selectObraSocial.value;
+    const valorBase = Number(inputValorConsulta.value) || 0;
+    const normalize = s => s ? s.toString().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim() : "";
+    let descuento = 0;
+    if (obra) {
+      const key = Object.keys(DESCUENTOS_OS).find(k => normalize(k) === normalize(obra));
+      descuento = key ? DESCUENTOS_OS[key] : 0;
+    }
+    inputPorcentaje.value = descuento;
+    const valorFinal = valorBase - (valorBase * (descuento / 100));
+    inputValorFinal.value = valorFinal ? valorFinal.toFixed(2) : "";
+  }
+
+  /*** VALIDAR FECHA ***/
+  function fechaValida(fecha) {
+    const hoy = new Date();
+    const seleccionada = new Date(fecha + "T00:00");
+    const diaSemana = seleccionada.getDay();
+    return (
+      seleccionada >= hoy &&
+      seleccionada.getFullYear() <= 2030 &&
+      diaSemana !== 0 &&
+      diaSemana !== 6
+    );
+  }
+
+  /*** GUARDAR TURNO ***/
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const nombrePaciente = document.getElementById("nombrePaciente").value.trim();
+    const documento = document.getElementById("documento").value.trim();
+    const fecha = document.getElementById("fecha").value;
+    const hora = selectHora.value;
+    const medico = selectMedico.value;
     const especialidad = selectEspecialidad.value;
-    const obraSocial = selectObraSocial.value;
+    const obra = selectObraSocial.value;
 
-    const valorKey = Object.keys(VALORES_CONSULTA).find(k => normalize(k) === normalize(especialidad));
-    const valor = valorKey ? VALORES_CONSULTA[valorKey] : 0;
-
-    const descKey = Object.keys(DESCUENTOS_OS).find(k => normalize(k) === normalize(obraSocial));
-    const descuento = descKey ? DESCUENTOS_OS[descKey] : 0;
-
-    inputValor.value = valor;
-    inputDesc.value = descuento;
-    inputTotal.value = (valor - valor*(descuento/100)).toFixed(2);
-  }
-
-  /*** VALIDACIÓN DE TURNOS ***/
-  function validarTurno(paciente, medico, especialidad, obraSocial, fecha, hora) {
-    if (!paciente || !medico || !especialidad || !obraSocial || !fecha || !hora) return "⚠️ Complete todos los campos.";
-    const [anio,mes,dia]=fecha.split('-').map(Number);
-    const [h,m]=hora.split(':').map(Number);
-    const fechaHora=new Date(anio,mes-1,dia,h,m);
-    const ahora=new Date();
-    if(fechaHora<ahora) return "⚠️ La fecha y hora no pueden ser anteriores a la actual.";
-    if(h<8||h>20) return "⚠️ La hora del turno debe estar entre 08:00 y 20:00.";
-    const existe = turnos.some(t=>t.medico===medico && t.fecha===fecha && t.hora===hora);
-    if(existe) return `⚠️ Ya existe un turno para ${medico} el ${fecha} a las ${hora}.`;
-    return null;
-  }
-
-  /*** MOSTRAR TURNOS ***/
-  function mostrarTurnos() {
-    tbodyTurnos.innerHTML='';
-    if(!turnos.length) {
-      tbodyTurnos.innerHTML=`<tr><td colspan="7" class="text-center">No hay turnos registrados</td></tr>`;
+    // Validaciones básicas
+    if (!nombrePaciente || !documento || !fecha || !hora || !medico || !especialidad || !obra) {
+      mostrarMensaje("⚠️ Todos los campos son obligatorios.", "error");
       return;
     }
-    turnos.forEach(t=>{
-      const tr=document.createElement('tr');
-      tr.innerHTML=`
+    if (!fechaValida(fecha)) {
+      mostrarMensaje("⚠️ La fecha no es válida. No puede ser fin de semana, anterior a hoy ni posterior a 2030.", "error");
+      return;
+    }
+
+    // Traer todos los turnos de todos lados
+    const turnosAlta = JSON.parse(localStorage.getItem("turnos")) || [];
+    const turnosReservados = JSON.parse(localStorage.getItem("turnosReservados")) || [];
+    const turnosPublicos = JSON.parse(localStorage.getItem("turnosPublicos")) || [];
+
+    // Validar que no exista turno duplicado
+    const existe = [...turnosAlta, ...turnosReservados, ...turnosPublicos]
+      .some(t => t.medico === medico && t.fecha === fecha && t.hora === hora);
+
+    if (existe) {
+      mostrarMensaje("⚠️ Ese turno ya está reservado para ese médico, fecha y hora.", "error");
+      return;
+    }
+
+    // Generar ID único solo dentro de turnosPublicos
+    const maxId = turnosPublicos.length ? Math.max(...turnosPublicos.map(t => Number(t.id) || 0)) : 0;
+    const nuevoId = maxId + 1;
+
+    const nuevoTurno = {
+      id: nuevoId,
+      dni: documento,
+      paciente: nombrePaciente,
+      medico,
+      especialidad,
+      obraSocial: obra,
+      fecha,
+      hora,
+      valorConsulta: Number(inputValorConsulta.value),
+      descuento: Number(inputPorcentaje.value),
+      total: Number(inputValorFinal.value)
+    };
+
+    turnosPublicos.push(nuevoTurno);
+    localStorage.setItem("turnosPublicos", JSON.stringify(turnosPublicos));
+    mostrarTurnos();
+
+    mostrarMensaje(`
+      <strong>✅ Reserva confirmada:</strong><br>
+      ${nombrePaciente}, tu turno es el <b>${fecha}</b> a las <b>${hora}</b> hs<br>
+      con el Dr./Dra. <b>${medico}</b>.<br>¡Te esperamos!
+    `, "success");
+
+    form.reset();
+    inputValorConsulta.value = "";
+    inputPorcentaje.value = "";
+    inputValorFinal.value = "";
+});
+
+  /*** MOSTRAR TURNOS EN TABLA ***/
+  function mostrarTurnos() {
+    const turnos = JSON.parse(localStorage.getItem("turnosPublicos")) || [];
+    tablaTurnos.innerHTML = "";
+    turnos.forEach(t => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${t.id}</td>
+        <td>${t.dni}</td>
         <td>${t.paciente}</td>
         <td>${t.medico}</td>
         <td>${t.especialidad}</td>
         <td>${t.obraSocial}</td>
-        <td>${t.fecha}</td>
-        <td>${t.hora}</td>
         <td>$${t.total}</td>
       `;
-      tbodyTurnos.appendChild(tr);
+      tablaTurnos.appendChild(tr);
     });
   }
 
-  /*** AGREGAR TURNO ***/
-  function agregarTurno(e){
-    e.preventDefault();
-    const paciente = document.getElementById('nombrePaciente').value.trim();
-    const medico = selectMedico.value;
-    const especialidad = selectEspecialidad.value;
-    const obraSocial = selectObraSocial.value;
-    const fecha = document.getElementById('fechaTurno').value;
-    const hora = selectHora.value;
-    const valor = parseFloat(inputValor.value)||0;
-    const descuento = parseFloat(inputDesc.value)||0;
-    const total = parseFloat(inputTotal.value)||0;
-
-    const error = validarTurno(paciente,medico,especialidad,obraSocial,fecha,hora);
-    if(error){mostrarAlerta(error);return;}
-
-    turnos.push({paciente,medico,especialidad,obraSocial,fecha,hora,valor,descuento,total});
-    guardarTurnos();
-    mostrarTurnos();
-    formTurno.reset();
-    selectObraSocial.innerHTML='<option value="">Seleccione...</option>';
-    mostrarAlerta("✅ Turno registrado correctamente.");
+  /*** MOSTRAR MENSAJES ***/
+  function mostrarMensaje(texto, tipo = "error") {
+    mensajeDiv.innerHTML = texto;
+    mensajeDiv.style.display = "block";
+    if (tipo === "error") {
+      mensajeDiv.style.backgroundColor = "#f8d7da";
+      mensajeDiv.style.color = "#721c24";
+      mensajeDiv.style.border = "1px solid #f5c6cb";
+    } else {
+      mensajeDiv.style.backgroundColor = "#d4edda";
+      mensajeDiv.style.color = "#155724";
+      mensajeDiv.style.border = "1px solid #c3e6cb";
+    }
+    mensajeDiv.style.padding = "10px";
+    mensajeDiv.style.borderRadius = "8px";
+    mensajeDiv.style.marginTop = "10px";
+    mensajeDiv.style.textAlign = "center";
   }
 
-  /*** EVENTOS ***/
-  formTurno.addEventListener('submit', agregarTurno);
-  selectMedico.addEventListener('change', () => {
-    const med = medicos.find(m => m.nombre === selectMedico.value);
-    if (med) {
-      selectEspecialidad.value = med.especialidad;
-      cargarObrasSociales(med.nombre);
-    } else {
-      selectEspecialidad.value = '';
-      selectObraSocial.innerHTML = '<option value="">Seleccione...</option>';
-    }
-    calcularTotal();
-  });
-  selectEspecialidad.addEventListener('change', () => {
-    const med = medicos.find(m => normalize(m.especialidad) === normalize(selectEspecialidad.value));
-    if (med) {
-      selectMedico.value = med.nombre;
-      cargarObrasSociales(med.nombre);
-    } else {
-      selectMedico.value = '';
-      selectObraSocial.innerHTML = '<option value="">Seleccione...</option>';
-    }
-    calcularTotal();
-  });
-  selectObraSocial.addEventListener('change', calcularTotal);
-
-  /*** INICIALIZACIÓN ***/
-  actualizarSelects();
-  generarHorarios();
   mostrarTurnos();
 });

@@ -16,7 +16,7 @@
   <!-- CSS personalizado -->
   <link rel="stylesheet" href="CSS/styles.css">
   
-  <!-- Verifica Login --> <script src="./JS/verificarLogin.js"></script>
+  <!-- Verifica Login --> <script src="JS/verificarLogin.js"></script>
 
 
 </head>
@@ -189,6 +189,34 @@
     </div>
 
     <div id="alertaEspecialidades" class="text-center mt-3"></div>
+  </div>
+</section>
+
+<section class="row justify-content-center mt-4">
+  <div class="col-md-10">
+    <h2 class="text-center mb-3">Obras Sociales Registradas</h2>
+
+    <form id="formObraSocial" class="mb-3 d-flex gap-2">
+      <input type="text" id="nuevaObraSocial" class="form-control" placeholder="Nombre de la obra social">
+      <input type="number" id="porcentajeObraSocial" class="form-control" placeholder="% de descuento">
+      <button type="submit" class="btn btn-primary">Agregar / Actualizar</button>
+    </form>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered" id="tablaObrasSociales">
+        <thead class="table-primary">
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>% Descuento</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="listaObrasSociales">
+          <!-- Se llenará dinámicamente con JS -->
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
 
