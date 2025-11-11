@@ -25,28 +25,16 @@
     </a>
     <h1 class="mb-0 position-absolute start-50 translate-middle-x text-center">Bienvenido a la Clínica IDW</h1>
     <div class="d-flex align-items-center gap-2">
-      <!-- Botones visibles solo en desktop (lg y superiores) -->
+      <!-- Botón de modo oscuro (desktop) -->
       <button id="darkModeToggle" class="btn btn-outline-light btn-sm d-none d-lg-inline-block" type="button" title="Cambiar modo oscuro">
         <i class="bi bi-moon-fill" id="darkModeIcon"></i>
       </button>
-      <button class="btn btn-outline-light btn-sm d-none d-lg-inline-block" onclick="logout()" title="Cerrar sesión">
-        <i class="bi bi-box-arrow-right"></i> Cerrar sesión
-      </button>
+      <!-- Botón login/logout visible en desktop -->
+      <a id="navLoginBtn" href="login.html" class="btn btn-outline-light btn-sm d-none d-lg-inline-block">Iniciar Sesión</a>
       <!-- Botón hamburguesa solo en móvil/tablet -->
       <button class="navbar-toggler navbar-dark d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
-      
-      <script>
-        function logout() {
-          // limpiar session/local storage relacionado a autenticación
-          sessionStorage.clear();
-          localStorage.removeItem('logueado');
-          localStorage.removeItem('userRole');
-          // redirigir al índice donde está el login
-          window.location.href = 'index.html';
-        }
-      </script>
 
     </div>
   </div>
@@ -58,15 +46,16 @@
       <a href="contacto.html" class="nav-link">Contacto</a>
       <a href="altaMedicos.html" class="nav-link">Alta de Médicos</a>
       <a href="reservarTurno.html" class="nav-link">Reservar Turno</a>
-      
+      <div class="d-lg-none w-100 mt-2">
+        <a id="navLoginBtnMobile" href="login.html" class="btn btn-outline-light btn-sm w-100">Iniciar Sesión</a>
+      </div>
+
       <!-- Botones dentro del menú hamburguesa (solo móvil/tablet) -->
       <div class="d-lg-none w-100 d-flex flex-column gap-2 mt-2 px-3">
         <button id="darkModeToggleMobile" class="btn btn-outline-light btn-sm w-100" type="button" title="Cambiar modo oscuro">
           <i class="bi bi-moon-fill" id="darkModeIconMobile"></i> Modo Oscuro
         </button>
-        <button class="btn btn-outline-light btn-sm w-100" onclick="logout()" title="Cerrar sesión">
-          <i class="bi bi-box-arrow-right"></i> Cerrar sesión
-        </button>
+        <!-- En móvil usamos el mismo botón #navLoginBtn (fuera del collapse) para mantener único identificador; no duplicar aquí -->
       </div>
     </nav>
   </div>
@@ -281,15 +270,7 @@
   }
 </script>
 
-<!-- Función logout -->
-<script>
-  function logout() {
-    sessionStorage.clear();
-    localStorage.removeItem('logueado');
-    localStorage.removeItem('userRole');
-    window.location.href = 'index.html';
-  }
-</script>
+<!-- Nota: el logout/login se maneja desde `js/app.js` mediante el elemento #navLoginBtn -->
 
 
 </body>

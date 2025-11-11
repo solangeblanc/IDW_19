@@ -84,4 +84,52 @@ document.addEventListener('DOMContentLoaded', () => {
     darkModeToggleMobile.addEventListener('click', toggleTheme);
   }
 
+  // Visibilidad del nav (aplicable en todas las páginas que cargan js/app.js)
+  function getRole(){
+    return sessionStorage.getItem('userRole') || localStorage.getItem('userRole');
+  }
+
+  function isLogged(){
+    return !!(sessionStorage.getItem('username') || localStorage.getItem('logueado'));
+  }
+
+  function refreshNav(){
+    const altaLink = document.querySelector('a[href="altaMedicos.html"]');
+    const reservarLink = document.querySelector('a[href="reservarTurno.html"]');
+  // soporta un botón para desktop (#navLoginBtn) y otro para móvil (#navLoginBtnMobile)
+  const navLoginBtns = Array.from(document.querySelectorAll('#navLoginBtn, #navLoginBtnMobile'));
+    const role = getRole();
+    const logged = isLogged();
+
+    if (altaLink) altaLink.style.display = (role === 'admin') ? '' : 'none';
+    if (reservarLink) reservarLink.style.display = logged ? '' : 'none';
+
+    if (navLoginBtns && navLoginBtns.length){
+      navLoginBtns.forEach(navLoginBtn => {
+        if (logged){
+          navLoginBtn.textContent = 'Hola, ' + (sessionStorage.getItem('username') || 'Usuario');
+          navLoginBtn.classList.remove('btn-outline-light');
+          navLoginBtn.classList.add('btn-success');
+          navLoginBtn.removeAttribute('href');
+          navLoginBtn.onclick = function(){
+            sessionStorage.clear();
+            localStorage.removeItem('logueado');
+            localStorage.removeItem('userRole');
+            window.location.reload();
+          };
+        } else {
+          navLoginBtn.textContent = 'Iniciar Sesión';
+          navLoginBtn.classList.remove('btn-success');
+          navLoginBtn.classList.add('btn-outline-light');
+          navLoginBtn.setAttribute('href', 'login.html');
+          navLoginBtn.onclick = null;
+        }
+      });
+    }
+  }
+
+  // Ejecutar al cargar y cuando cambie el storage (otras pestañas)
+  refreshNav();
+  window.addEventListener('storage', refreshNav);
+
 });
