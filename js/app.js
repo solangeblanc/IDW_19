@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateIcons(currentTheme);
   }
 
-  if(darkModeToggle) darkModeToggle.addEventListener('click', toggleTheme);
+ if(darkModeToggle) darkModeToggle.addEventListener('click', toggleTheme);
   if(darkModeToggleMobile) darkModeToggleMobile.addEventListener('click', toggleTheme);
 
   // ============================

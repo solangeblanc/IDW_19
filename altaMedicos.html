@@ -45,11 +45,9 @@
       <a href="institucional.html" class="nav-link">Institucional</a>
       <a href="contacto.html" class="nav-link">Contacto</a>
       <a href="altaMedicos.html" class="nav-link">Alta de Médicos</a>
-      <a href="reservarTurno.html" class="nav-link">Reservar Turno</a>
       <div class="d-lg-none w-100 mt-2">
         <a id="navLoginBtnMobile" href="login.html" class="btn btn-outline-light btn-sm w-100">Iniciar Sesión</a>
       </div>
-
       <!-- Botones dentro del menú hamburguesa (solo móvil/tablet) -->
       <div class="d-lg-none w-100 d-flex flex-column gap-2 mt-2 px-3">
         <button id="darkModeToggleMobile" class="btn btn-outline-light btn-sm w-100" type="button" title="Cambiar modo oscuro">
@@ -63,49 +61,74 @@
 
 <main class="container-fluid alta-medicos-section mb-5">
 
-  <!-- Formulario de Alta de Médicos -->
-  <section id="altaMedicosContainer">
-    <div class="text-center mb-4">
-      <h2>Alta de Médicos</h2>
-      <p>Complete el formulario a continuación para registrar un nuevo médico en el sistema.</p>
-    </div>
+  <!-- MODIFICADO Formulario de Alta de Médicos --> 
+<section id="altaMedicosContainer">
+  <div class="text-center mb-4">
+    <h2>Alta de Médicos</h2>
+    <p>Complete el formulario a continuación para registrar un nuevo médico en el sistema.</p>
+  </div>
 
-    <div class="row justify-content-center mb-5">
-      <div class="col-12 col-lg-12">
-        <div class="card p-4 shadow-sm">
-          <form id="formAltaMedico">
-            <div class="mb-3">
-              <label for="nombre" class="form-label form-label-custom">Nombre y Apellido:</label>
-              <input type="text" id="nombre" class="form-control" placeholder="Ej: Juan Pérez">
-            </div>
+  <div class="row justify-content-center mb-5">
+    <div class="col-12 col-lg-12">
+      <div class="card p-4 shadow-sm">
+        <form id="formAltaMedico" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="nombre" class="form-label form-label-custom">Nombre y Apellido:</label>
+            <input type="text" id="nombre" class="form-control" placeholder="Ej: Juan Pérez" required>
+          </div>
+          
+          <div class="mb-3">
+            <label for="matricula" class="form-label form-label-custom">Matrícula:</label>
+            <input type="number" id="matricula" class="form-control" placeholder="Ej: 12345" required>
+          </div>
 
-            <div class="mb-3">
-              <label for="especialidad" class="form-label form-label-custom">Especialidad:</label>
-              <input type="text" id="especialidad" class="form-control" placeholder="Ej: Cardiología">
-            </div>
+          
 
-            <div class="mb-3">
-              <label for="telefono" class="form-label form-label-custom">Teléfono:</label>
-              <input type="tel" id="telefono" class="form-control" placeholder="+54 11 1234 5678">
-            </div>
+          <div class="mb-3">
+            <label for="especialidad" class="form-label form-label-custom">Especialidad:</label>
+            <select id="especialidad" class="form-control" required>
+              <option value="">Seleccione...</option>
+              <!-- Se llena desde dataValores.js -->
+            </select>
+          </div>
 
-            <div class="mb-3">
-              <label for="obrasSociales" class="form-label form-label-custom">Obras Sociales:</label>
-              <input type="text" id="obrasSociales" class="form-control" placeholder="Separadas por coma">
-            </div>
+          <div class="mb-3">
+            <label for="valorConsulta" class="form-label form-label-custom">Valor de consulta ($):</label>
+            <input type="number" id="valorConsulta" class="form-control" readonly placeholder="Se completa automáticamente">
+          </div>
 
-            <div class="mb-3">
-              <label for="email" class="form-label form-label-custom">Correo:</label>
-              <input type="email" id="email" class="form-control" placeholder="ejemplo@correo.com">
-            </div>
+          <div class="mb-3">
+            <label for="telefono" class="form-label form-label-custom">Teléfono:</label>
+            <input type="tel" id="telefono" class="form-control" placeholder="+54 11 1234 5678">
+          </div>
 
-            <div class="text-center mt-3">
-              <button type="submit" class="btn btn-sm-primary">Registrar Médico</button>
-            </div>
-          </form>
-        </div>
+          <div class="mb-3">
+            <label for="obrasSociales" class="form-label form-label-custom">Obras Sociales:</label>
+            <input type="text" id="obrasSociales" class="form-control" placeholder="Separadas por coma (ej: OSDE, PAMI)">
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label form-label-custom">Correo:</label>
+            <input type="email" id="email" class="form-control" placeholder="ejemplo@correo.com">
+          </div>
+
+          <div class="mb-3">
+            <label for="descripcion" class="form-label form-label-custom">Descripción:</label>
+            <textarea id="descripcion" class="form-control" rows="3" placeholder="Breve descripción del médico"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="foto" class="form-label form-label-custom">Foto del médico:</label>
+            <input type="file" id="foto" class="form-control" accept="image/*">
+          </div>
+
+          <div class="text-center mt-3">
+            <button type="submit" class="btn btn-sm-primary">Registrar Médico</button>
+          </div>
+        </form>
       </div>
     </div>
+  </div>
 
     <div id="alertaMedicos" class="text-center mb-3"></div>
   </section>
@@ -120,14 +143,17 @@
           <thead class="table-primary dark-header">
             <tr>
               <th>Nombre</th>
+              <th>Matrícula</th>
+              <th>ID</th>
               <th>Especialidad</th>
+              <th>Valor Consulta ($)</th>
               <th>Teléfono</th>
               <th>Obras Sociales</th>
               <th>Email</th>
               <th>Acciones</th>
             </tr>
           </thead>
-          <tbody id="medicosRegistrados">
+            <tbody id="medicosRegistrados">
           </tbody>
         </table>
       </div>
@@ -135,21 +161,34 @@
   </section>
 
   <!-- Especialidades -->
-  <section class="row justify-content-center mt-5">
-    <div class="col-md-10">
-      <h2 class="text-center mb-3">Especialidades</h2>
+<section class="row justify-content-center mt-5">
+  <div class="col-md-10">
+    <h2 class="text-center mb-3">Especialidades</h2>
 
-      <form id="formEspecialidad" class="d-flex justify-content-center mb-3">
-        <input type="text" id="nuevaEspecialidad" class="form-control me-2" placeholder="Agregar especialidad">
-        <button type="submit" class="btn btn-sm-primary">Agregar</button>
-      </form>
+    <form id="formEspecialidad" class="d-flex justify-content-center mb-3">
+      <input type="text" id="nuevaEspecialidad" class="form-control me-2" placeholder="Agregar especialidad">
+      <button type="submit" class="btn btn-sm-primary">Agregar</button>
+    </form>
 
-      <ul id="listaEspecialidades" class="list-group"></ul>
-      <div id="alertaEspecialidades" class="text-center mt-3"></div>
+    <!-- Tabla de especialidades con estilo unificado -->
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered align-middle text-center mx-auto">
+        <thead class="table-primary dark-header">
+          <tr>
+            <th>ID</th>
+            <th>Especialidad</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="listaEspecialidades"></tbody>
+      </table>
     </div>
-  </section>
 
-  <!-- Gestión de Turnos -->
+    <div id="alertaEspecialidades" class="text-center mt-3"></div>
+  </div>
+</section>
+
+ <!-- Gestión de Turnos -->
 <form id="formAltaTurno" class="mb-5">
   <div class="row g-3">
     <div class="col-md-4">
@@ -175,16 +214,6 @@
       <label for="obraSocialTurno" class="form-label">Obra Social</label>
       <select id="obraSocialTurno" class="form-select" required>
         <option value="">Seleccione...</option>
-        <option>OSDE</option>
-        <option>Swiss Medical</option>
-        <option>Galeno</option>
-        <option>PAMI</option>
-        <option>IOMA</option>
-        <option>Medifé</option>
-        <option>Omint</option>
-        <option>Accord Salud</option>
-        <option>UP</option>
-        <option>Particular</option>
       </select>
     </div>
 
@@ -223,30 +252,31 @@
   <div id="alertaTurnos" class="text-center mt-2"></div>
 </form>
 
-  <section class="row justify-content-center mt-5">
-    <div class="col-md-10">
-      <h2 class="text-center mb-3">Turnos Registrados</h2>
-      <div class="table-responsive">
-        <table class="table table-striped align-middle text-center mx-auto">
-          <thead>
-            <tr>
-              <th>Paciente</th>
-              <th>Médico</th>
-              <th>Especialidad</th>
-              <th>Obra Social</th>
-              <th>Fecha</th>
-              <th>Hora</th>
-              <th>Precio</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="turnosRegistrados"></tbody>
-        </table>
-      </div>
+<!-- Tabla de Turnos -->
+<section class="row justify-content-center mt-5">
+  <div class="col-md-10">
+    <h2 class="text-center mb-3">Turnos Registrados</h2>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered align-middle text-center mx-auto">
+        <thead class="table-primary dark-header">
+          <tr>
+            <th>ID Turno</th>
+            <th>Paciente</th>
+            <th>Médico</th>
+            <th>Especialidad</th>
+            <th>Obra Social</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="turnosRegistrados"></tbody>
+      </table>
     </div>
   </div>
 </section>
-
 </main>
 
 <footer class="text-center py-3">
@@ -258,12 +288,13 @@
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
+<script type="module" src="js/data.js"></script>
+<script type="module" src="js/dataValores.js"></script>
 <script type="module" src="js/altaMedicos.js"></script>
 <script src="js/app.js"></script>
 
 <!-- Verificación de login -->
-<script>
+  <script>
   if (localStorage.getItem("logueado") !== "true") {
     // redirigir al índice donde está el acceso/login
     window.location.href = "index.html";
