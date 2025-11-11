@@ -51,40 +51,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const darkModeIconMobile = document.getElementById('darkModeIconMobile');
   const body = document.body;
 
-  // Función para cambiar el tema
   function toggleTheme() {
     const currentTheme = body.getAttribute('data-bs-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
     body.setAttribute('data-bs-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     updateIcons(newTheme);
   }
 
-  // Función para actualizar ambos iconos
   function updateIcons(theme) {
     const iconClass = theme === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
     if (darkModeIcon) darkModeIcon.className = iconClass;
     if (darkModeIconMobile) darkModeIconMobile.className = iconClass;
   }
 
-  // Cargar tema guardado
   const currentTheme = localStorage.getItem('theme');
   if (currentTheme) {
     body.setAttribute('data-bs-theme', currentTheme);
     updateIcons(currentTheme);
   }
 
-  // Event listeners para ambos botones
-  if(darkModeToggle) {
-    darkModeToggle.addEventListener('click', toggleTheme);
-  }
-  
-  if(darkModeToggleMobile) {
-    darkModeToggleMobile.addEventListener('click', toggleTheme);
-  }
+  if(darkModeToggle) darkModeToggle.addEventListener('click', toggleTheme);
+  if(darkModeToggleMobile) darkModeToggleMobile.addEventListener('click', toggleTheme);
 
-  // Visibilidad del nav (aplicable en todas las páginas que cargan js/app.js)
+  // ============================
+  // NAV VISIBILITY SEGÚN LOGIN/ROL
+  // ============================
+
   function getRole(){
     return sessionStorage.getItem('userRole') || localStorage.getItem('userRole');
   }
@@ -95,23 +88,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function refreshNav(){
     const altaLink = document.querySelector('a[href="altaMedicos.html"]');
-    const reservarLink = document.querySelector('a[href="reservarTurno.html"]');
-  // soporta un botón para desktop (#navLoginBtn) y otro para móvil (#navLoginBtnMobile)
-  const navLoginBtns = Array.from(document.querySelectorAll('#navLoginBtn, #navLoginBtnMobile'));
+    const reservarPublicLink = document.querySelector('a[href="reservarTurnoSinLogin.html"]');
+    const reservarAdminLink = document.querySelector('a[href="reservarTurno.html"]');
+    const navLoginBtns = Array.from(document.querySelectorAll('#navLoginBtn, #navLoginBtnMobile'));
+
     const role = getRole();
     const logged = isLogged();
 
+    // Alta de Médicos solo para admin
     if (altaLink) altaLink.style.display = (role === 'admin') ? '' : 'none';
-    if (reservarLink) reservarLink.style.display = logged ? '' : 'none';
 
+    // Reservar Turno (Usuarios) siempre visible
+    if (reservarPublicLink) reservarPublicLink.style.display = '';
+
+    // Reservar Turno (Admin) solo visible si está logueado como admin
+    if (reservarAdminLink) reservarAdminLink.style.display = (role === 'admin' && logged) ? '' : 'none';
+
+    // Botón login/logout
     if (navLoginBtns && navLoginBtns.length){
       navLoginBtns.forEach(navLoginBtn => {
         if (logged){
-          // Cambiar boton a Cerrar Sesion
           navLoginBtn.textContent = 'Cerrar sesión';
           navLoginBtn.classList.remove('btn-outline-light');
-          // usar estilo de peligro suave para indicar acción de cierre
-          navLoginBtn.classList.remove('btn-success');
           navLoginBtn.classList.add('btn-outline-danger');
           navLoginBtn.removeAttribute('href');
           navLoginBtn.onclick = function(){
@@ -122,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
           };
         } else {
           navLoginBtn.textContent = 'Iniciar Sesión';
-          // restablecer estilo de login
           navLoginBtn.classList.remove('btn-outline-danger');
           navLoginBtn.classList.add('btn-outline-light');
           navLoginBtn.setAttribute('href', 'login.html');
@@ -132,7 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Ejecutar al cargar y cuando cambie el storage (otras pestañas)
   refreshNav();
   window.addEventListener('storage', refreshNav);
 
