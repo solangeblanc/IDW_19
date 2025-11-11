@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (navLoginBtns && navLoginBtns.length){
       navLoginBtns.forEach(navLoginBtn => {
         if (logged){
-          // mostrar acción de logout en lugar de saludo
+          // Cambiar boton a Cerrar Sesion
           navLoginBtn.textContent = 'Cerrar sesión';
           navLoginBtn.classList.remove('btn-outline-light');
           // usar estilo de peligro suave para indicar acción de cierre
