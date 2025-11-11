@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
             sessionStorage.clear();
             localStorage.removeItem('logueado');
             localStorage.removeItem('userRole');
-            window.location.reload();
+            window.location.href = 'index.html';
           };
         } else {
           navLoginBtn.textContent = 'Iniciar Sesión';
