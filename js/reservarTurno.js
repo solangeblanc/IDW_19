@@ -205,23 +205,28 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /*** MOSTRAR TURNOS EN TABLA ***/
-  function mostrarTurnos() {
-    const turnos = JSON.parse(localStorage.getItem("turnosPublicos")) || [];
-    tablaTurnos.innerHTML = "";
-    turnos.forEach(t => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${t.id}</td>
-        <td>${t.dni}</td>
-        <td>${t.paciente}</td>
-        <td>${t.medico}</td>
-        <td>${t.especialidad}</td>
-        <td>${t.obraSocial}</td>
-        <td>$${t.total}</td>
-      `;
-      tablaTurnos.appendChild(tr);
-    });
-  }
+function mostrarTurnos() {
+  const turnos = JSON.parse(localStorage.getItem("turnosPublicos")) || [];
+  tablaTurnos.innerHTML = "";
+  turnos.forEach((t, index) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${t.id}</td>
+      <td>${t.dni}</td>
+      <td>${t.paciente}</td>
+      <td>${t.medico}</td>
+      <td>${t.especialidad}</td>
+      <td>${t.obraSocial}</td>
+      <td>$${t.total}</td>
+      <td>
+        <button class="btn btn-sm btn-warning" onclick="editarTurno(${index})">Editar</button>
+        <button class="btn btn-sm btn-danger" onclick="eliminarTurno(${index})">Eliminar</button>
+      </td>
+    `;
+    tablaTurnos.appendChild(tr);
+  });
+}
+
 
   /*** MOSTRAR MENSAJES ***/
   function mostrarMensaje(texto, tipo = "error") {
